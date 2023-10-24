@@ -9,23 +9,65 @@
 /* Begin PBXBuildFile section */
 		A20989E12AE6A58500FD7C2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20989E02AE6A58500FD7C2A /* AppDelegate.swift */; };
 		A20989E32AE6A58500FD7C2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20989E22AE6A58500FD7C2A /* SceneDelegate.swift */; };
-		A20989E52AE6A58500FD7C2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20989E42AE6A58500FD7C2A /* ViewController.swift */; };
+		A20989E52AE6A58500FD7C2A /* UniversityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20989E42AE6A58500FD7C2A /* UniversityVC.swift */; };
 		A20989E82AE6A58500FD7C2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A20989E62AE6A58500FD7C2A /* Main.storyboard */; };
 		A20989EB2AE6A58500FD7C2A /* Academia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A20989E92AE6A58500FD7C2A /* Academia.xcdatamodeld */; };
 		A20989ED2AE6A58700FD7C2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20989EC2AE6A58700FD7C2A /* Assets.xcassets */; };
 		A20989F02AE6A58700FD7C2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A20989EE2AE6A58700FD7C2A /* LaunchScreen.storyboard */; };
+		A20989FD2AE6A9AE00FD7C2A /* DepartmentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20989FC2AE6A9AE00FD7C2A /* DepartmentsVC.swift */; };
+		A20989FF2AE6A9DB00FD7C2A /* ProfessorsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20989FE2AE6A9DB00FD7C2A /* ProfessorsVC.swift */; };
+		A2098A012AE6AA2400FD7C2A /* CoursesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2098A002AE6AA2400FD7C2A /* CoursesVC.swift */; };
+		A2098A032AE6AA5800FD7C2A /* StudentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2098A022AE6AA5800FD7C2A /* StudentsVC.swift */; };
+		A2098A062AE6AEC300FD7C2A /* UniversityListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2098A052AE6AEC300FD7C2A /* UniversityListTableVC.swift */; };
+		A2943CD42AE74F6E00268831 /* DepartmentsListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943CD32AE74F6E00268831 /* DepartmentsListTableVC.swift */; };
+		A2943CD62AE74FA200268831 /* ProfessorsListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943CD52AE74FA200268831 /* ProfessorsListTableVC.swift */; };
+		A2943CD82AE74FCD00268831 /* CoursesListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943CD72AE74FCD00268831 /* CoursesListTableVC.swift */; };
+		A2943CDA2AE74FF600268831 /* StudentsListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943CD92AE74FF600268831 /* StudentsListTableVC.swift */; };
+		A2943CDF2AE767E100268831 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943CDE2AE767E100268831 /* Validation.swift */; };
+		A2943CE12AE769AD00268831 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943CE02AE769AD00268831 /* DataManager.swift */; };
+		A2943D142AE7E50D00268831 /* Student+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943D0A2AE7E50D00268831 /* Student+CoreDataClass.swift */; };
+		A2943D152AE7E50D00268831 /* Student+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943D0B2AE7E50D00268831 /* Student+CoreDataProperties.swift */; };
+		A2943D162AE7E50D00268831 /* Professor+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943D0C2AE7E50D00268831 /* Professor+CoreDataClass.swift */; };
+		A2943D172AE7E50D00268831 /* Professor+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943D0D2AE7E50D00268831 /* Professor+CoreDataProperties.swift */; };
+		A2943D182AE7E50D00268831 /* University+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943D0E2AE7E50D00268831 /* University+CoreDataClass.swift */; };
+		A2943D192AE7E50D00268831 /* University+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943D0F2AE7E50D00268831 /* University+CoreDataProperties.swift */; };
+		A2943D1A2AE7E50D00268831 /* Department+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943D102AE7E50D00268831 /* Department+CoreDataClass.swift */; };
+		A2943D1B2AE7E50D00268831 /* Department+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943D112AE7E50D00268831 /* Department+CoreDataProperties.swift */; };
+		A2943D1C2AE7E50D00268831 /* Course+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943D122AE7E50D00268831 /* Course+CoreDataClass.swift */; };
+		A2943D1D2AE7E50D00268831 /* Course+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943D132AE7E50D00268831 /* Course+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A20989DD2AE6A58500FD7C2A /* Academia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Academia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A20989E02AE6A58500FD7C2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A20989E22AE6A58500FD7C2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A20989E42AE6A58500FD7C2A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A20989E42AE6A58500FD7C2A /* UniversityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityVC.swift; sourceTree = "<group>"; };
 		A20989E72AE6A58500FD7C2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A20989EA2AE6A58500FD7C2A /* Academia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Academia.xcdatamodel; sourceTree = "<group>"; };
 		A20989EC2AE6A58700FD7C2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A20989EF2AE6A58700FD7C2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A20989F12AE6A58700FD7C2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A20989FC2AE6A9AE00FD7C2A /* DepartmentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentsVC.swift; sourceTree = "<group>"; };
+		A20989FE2AE6A9DB00FD7C2A /* ProfessorsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorsVC.swift; sourceTree = "<group>"; };
+		A2098A002AE6AA2400FD7C2A /* CoursesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesVC.swift; sourceTree = "<group>"; };
+		A2098A022AE6AA5800FD7C2A /* StudentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsVC.swift; sourceTree = "<group>"; };
+		A2098A052AE6AEC300FD7C2A /* UniversityListTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityListTableVC.swift; sourceTree = "<group>"; };
+		A2943CD32AE74F6E00268831 /* DepartmentsListTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentsListTableVC.swift; sourceTree = "<group>"; };
+		A2943CD52AE74FA200268831 /* ProfessorsListTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorsListTableVC.swift; sourceTree = "<group>"; };
+		A2943CD72AE74FCD00268831 /* CoursesListTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListTableVC.swift; sourceTree = "<group>"; };
+		A2943CD92AE74FF600268831 /* StudentsListTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsListTableVC.swift; sourceTree = "<group>"; };
+		A2943CDE2AE767E100268831 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		A2943CE02AE769AD00268831 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A2943D0A2AE7E50D00268831 /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A2943D0B2AE7E50D00268831 /* Student+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A2943D0C2AE7E50D00268831 /* Professor+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Professor+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A2943D0D2AE7E50D00268831 /* Professor+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Professor+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A2943D0E2AE7E50D00268831 /* University+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "University+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A2943D0F2AE7E50D00268831 /* University+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "University+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A2943D102AE7E50D00268831 /* Department+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Department+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A2943D112AE7E50D00268831 /* Department+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Department+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A2943D122AE7E50D00268831 /* Course+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A2943D132AE7E50D00268831 /* Course+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Course+CoreDataProperties.swift"; path = "../../Course+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +100,109 @@
 		A20989DF2AE6A58500FD7C2A /* Academia */ = {
 			isa = PBXGroup;
 			children = (
-				A20989E02AE6A58500FD7C2A /* AppDelegate.swift */,
-				A20989E22AE6A58500FD7C2A /* SceneDelegate.swift */,
-				A20989E42AE6A58500FD7C2A /* ViewController.swift */,
-				A20989E62AE6A58500FD7C2A /* Main.storyboard */,
+				A2943CDD2AE767BC00268831 /* DataManager */,
+				A2943CDC2AE7679200268831 /* ValidationManager */,
+				A2943CDB2AE7678800268831 /* DataModel */,
+				A20989F72AE6A8AC00FD7C2A /* University */,
+				A2098A042AE6AA7500FD7C2A /* Storyboard */,
+				A20989E92AE6A58500FD7C2A /* Academia.xcdatamodeld */,
+				A20989F12AE6A58700FD7C2A /* Info.plist */,
 				A20989EC2AE6A58700FD7C2A /* Assets.xcassets */,
 				A20989EE2AE6A58700FD7C2A /* LaunchScreen.storyboard */,
-				A20989F12AE6A58700FD7C2A /* Info.plist */,
-				A20989E92AE6A58500FD7C2A /* Academia.xcdatamodeld */,
+				A20989E02AE6A58500FD7C2A /* AppDelegate.swift */,
+				A20989E22AE6A58500FD7C2A /* SceneDelegate.swift */,
 			);
 			path = Academia;
+			sourceTree = "<group>";
+		};
+		A20989F72AE6A8AC00FD7C2A /* University */ = {
+			isa = PBXGroup;
+			children = (
+				A20989E42AE6A58500FD7C2A /* UniversityVC.swift */,
+				A2098A052AE6AEC300FD7C2A /* UniversityListTableVC.swift */,
+				A20989F92AE6A8DE00FD7C2A /* Departments */,
+			);
+			path = University;
+			sourceTree = "<group>";
+		};
+		A20989F82AE6A8C500FD7C2A /* Professors */ = {
+			isa = PBXGroup;
+			children = (
+				A20989FE2AE6A9DB00FD7C2A /* ProfessorsVC.swift */,
+				A2943CD52AE74FA200268831 /* ProfessorsListTableVC.swift */,
+			);
+			path = Professors;
+			sourceTree = "<group>";
+		};
+		A20989F92AE6A8DE00FD7C2A /* Departments */ = {
+			isa = PBXGroup;
+			children = (
+				A20989FC2AE6A9AE00FD7C2A /* DepartmentsVC.swift */,
+				A2943CD32AE74F6E00268831 /* DepartmentsListTableVC.swift */,
+				A20989F82AE6A8C500FD7C2A /* Professors */,
+				A20989FA2AE6A8F600FD7C2A /* Courses */,
+			);
+			path = Departments;
+			sourceTree = "<group>";
+		};
+		A20989FA2AE6A8F600FD7C2A /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				A2098A002AE6AA2400FD7C2A /* CoursesVC.swift */,
+				A2943CD72AE74FCD00268831 /* CoursesListTableVC.swift */,
+				A20989FB2AE6A90900FD7C2A /* Students */,
+			);
+			path = Courses;
+			sourceTree = "<group>";
+		};
+		A20989FB2AE6A90900FD7C2A /* Students */ = {
+			isa = PBXGroup;
+			children = (
+				A2098A022AE6AA5800FD7C2A /* StudentsVC.swift */,
+				A2943CD92AE74FF600268831 /* StudentsListTableVC.swift */,
+			);
+			path = Students;
+			sourceTree = "<group>";
+		};
+		A2098A042AE6AA7500FD7C2A /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				A20989E62AE6A58500FD7C2A /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		A2943CDB2AE7678800268831 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				A2943D0A2AE7E50D00268831 /* Student+CoreDataClass.swift */,
+				A2943D0B2AE7E50D00268831 /* Student+CoreDataProperties.swift */,
+				A2943D0C2AE7E50D00268831 /* Professor+CoreDataClass.swift */,
+				A2943D0D2AE7E50D00268831 /* Professor+CoreDataProperties.swift */,
+				A2943D0E2AE7E50D00268831 /* University+CoreDataClass.swift */,
+				A2943D0F2AE7E50D00268831 /* University+CoreDataProperties.swift */,
+				A2943D102AE7E50D00268831 /* Department+CoreDataClass.swift */,
+				A2943D112AE7E50D00268831 /* Department+CoreDataProperties.swift */,
+				A2943D122AE7E50D00268831 /* Course+CoreDataClass.swift */,
+				A2943D132AE7E50D00268831 /* Course+CoreDataProperties.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		A2943CDC2AE7679200268831 /* ValidationManager */ = {
+			isa = PBXGroup;
+			children = (
+				A2943CDE2AE767E100268831 /* Validation.swift */,
+			);
+			path = ValidationManager;
+			sourceTree = "<group>";
+		};
+		A2943CDD2AE767BC00268831 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				A2943CE02AE769AD00268831 /* DataManager.swift */,
+			);
+			path = DataManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,10 +276,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A20989E52AE6A58500FD7C2A /* ViewController.swift in Sources */,
+				A2943CD82AE74FCD00268831 /* CoursesListTableVC.swift in Sources */,
+				A2943D142AE7E50D00268831 /* Student+CoreDataClass.swift in Sources */,
+				A2943CE12AE769AD00268831 /* DataManager.swift in Sources */,
+				A2943D182AE7E50D00268831 /* University+CoreDataClass.swift in Sources */,
+				A2943CDA2AE74FF600268831 /* StudentsListTableVC.swift in Sources */,
+				A20989E52AE6A58500FD7C2A /* UniversityVC.swift in Sources */,
+				A2943D172AE7E50D00268831 /* Professor+CoreDataProperties.swift in Sources */,
+				A2943D1A2AE7E50D00268831 /* Department+CoreDataClass.swift in Sources */,
+				A2943D162AE7E50D00268831 /* Professor+CoreDataClass.swift in Sources */,
 				A20989E12AE6A58500FD7C2A /* AppDelegate.swift in Sources */,
+				A2098A012AE6AA2400FD7C2A /* CoursesVC.swift in Sources */,
+				A2943D152AE7E50D00268831 /* Student+CoreDataProperties.swift in Sources */,
+				A2098A062AE6AEC300FD7C2A /* UniversityListTableVC.swift in Sources */,
+				A2943CDF2AE767E100268831 /* Validation.swift in Sources */,
 				A20989EB2AE6A58500FD7C2A /* Academia.xcdatamodeld in Sources */,
+				A2943CD42AE74F6E00268831 /* DepartmentsListTableVC.swift in Sources */,
+				A2943D1D2AE7E50D00268831 /* Course+CoreDataProperties.swift in Sources */,
 				A20989E32AE6A58500FD7C2A /* SceneDelegate.swift in Sources */,
+				A2943CD62AE74FA200268831 /* ProfessorsListTableVC.swift in Sources */,
+				A2943D1C2AE7E50D00268831 /* Course+CoreDataClass.swift in Sources */,
+				A20989FF2AE6A9DB00FD7C2A /* ProfessorsVC.swift in Sources */,
+				A2943D192AE7E50D00268831 /* University+CoreDataProperties.swift in Sources */,
+				A2098A032AE6AA5800FD7C2A /* StudentsVC.swift in Sources */,
+				A2943D1B2AE7E50D00268831 /* Department+CoreDataProperties.swift in Sources */,
+				A20989FD2AE6A9AE00FD7C2A /* DepartmentsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
