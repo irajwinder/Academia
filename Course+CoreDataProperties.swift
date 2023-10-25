@@ -17,9 +17,28 @@ extension Course {
     }
 
     @NSManaged public var courseName: String?
-    @NSManaged public var professorName: String?
-    @NSManaged public var departmentName: String?
-    @NSManaged public var enrolledStudents: String?
+    @NSManaged public var courseCode: Int64
+    @NSManaged public var semester: String?
+    @NSManaged public var professor: Professor?
+    @NSManaged public var student: NSSet?
+    @NSManaged public var department: Department?
+
+}
+
+// MARK: Generated accessors for student
+extension Course {
+
+    @objc(addStudentObject:)
+    @NSManaged public func addToStudent(_ value: Student)
+
+    @objc(removeStudentObject:)
+    @NSManaged public func removeFromStudent(_ value: Student)
+
+    @objc(addStudent:)
+    @NSManaged public func addToStudent(_ values: NSSet)
+
+    @objc(removeStudent:)
+    @NSManaged public func removeFromStudent(_ values: NSSet)
 
 }
 

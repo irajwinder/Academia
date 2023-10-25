@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="23A344" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Course" representedClassName=".Course" syncable="YES">
+        <attribute name="courseCode" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="courseName" optional="YES" attributeType="String"/>
-        <attribute name="departmentName" optional="YES" attributeType="String"/>
-        <attribute name="enrolledStudents" optional="YES" attributeType="String"/>
-        <attribute name="professorName" optional="YES" attributeType="String"/>
+        <attribute name="semester" optional="YES" attributeType="String"/>
+        <relationship name="department" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Department" inverseName="course" inverseEntity="Department"/>
+        <relationship name="professor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Professor" inverseName="course" inverseEntity="Professor"/>
+        <relationship name="student" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="course" inverseEntity="Student"/>
     </entity>
     <entity name="Department" representedClassName=".Department" syncable="YES">
         <attribute name="departmentName" optional="YES" attributeType="String"/>
         <attribute name="headOfDepartment" optional="YES" attributeType="String"/>
-        <attribute name="listOfProfessors" optional="YES" attributeType="String"/>
+        <relationship name="course" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="department" inverseEntity="Course"/>
+        <relationship name="professor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Professor" inverseName="department" inverseEntity="Professor"/>
+        <relationship name="university" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="University" inverseName="department" inverseEntity="University"/>
     </entity>
     <entity name="Professor" representedClassName=".Professor" syncable="YES">
-        <attribute name="courseTaught" optional="YES" attributeType="String"/>
         <attribute name="phoneNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="professorName" optional="YES" attributeType="String"/>
+        <relationship name="course" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="professor" inverseEntity="Course"/>
+        <relationship name="department" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Department" inverseName="professor" inverseEntity="Department"/>
+        <relationship name="student" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="professor" inverseEntity="Student"/>
     </entity>
     <entity name="Student" representedClassName=".Student" syncable="YES">
-        <attribute name="courseEnrolled" optional="YES" attributeType="String"/>
-        <attribute name="department" optional="YES" attributeType="String"/>
-        <attribute name="phoneNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="gpa" optional="YES" attributeType="String"/>
+        <attribute name="major" optional="YES" attributeType="String"/>
         <attribute name="studentID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="studentName" optional="YES" attributeType="String"/>
+        <relationship name="course" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="student" inverseEntity="Course"/>
+        <relationship name="professor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Professor" inverseName="student" inverseEntity="Professor"/>
     </entity>
     <entity name="University" representedClassName=".University" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="phoneNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="universityName" optional="YES" attributeType="String"/>
+        <relationship name="department" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Department" inverseName="university" inverseEntity="Department"/>
     </entity>
 </model>
