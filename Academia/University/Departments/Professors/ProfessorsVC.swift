@@ -8,7 +8,10 @@
 import UIKit
 
 class ProfessorsVC: UIViewController {
-
+    
+    @IBOutlet weak var professorName: UITextField!
+    @IBOutlet weak var professorNumber: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Add Professor"
@@ -24,6 +27,22 @@ class ProfessorsVC: UIViewController {
     
     //Save the Professor to Core Data
     @objc func saveProfessor() {
+        //Validate before saving
+        guard let professorName = professorName.text, Validation.isValidName(professorName) else {
+            Validation.showAlert(on: self, with: "Invalid Name", message: "Please enter a valid name.")
+            return
+        }
+        
+        guard let professorNumber = self.professorNumber.text, Validation.isValidPhoneNumber(professorNumber) else {
+            Validation.showAlert(on: self, with: "Invalid Number", message: "Please enter a valid phone Number.")
+            return
+        }
+        
+        //Save the data
+        datamanagerInstance.saveProfessor(
+            professorName: professorName,
+            phoneNumber: professorNumber
+        )
         navigationController?.popViewController(animated: true)
     }
 }

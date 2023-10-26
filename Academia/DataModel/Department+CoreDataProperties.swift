@@ -2,7 +2,7 @@
 //  Department+CoreDataProperties.swift
 //  Academia
 //
-//  Created by Rajwinder Singh on 10/24/23.
+//  Created by Rajwinder Singh on 10/25/23.
 //
 //
 
@@ -17,27 +17,9 @@ extension Department {
     }
 
     @NSManaged public var departmentName: String?
-    @NSManaged public var headOfDepartment: String?
-    @NSManaged public var university: University?
-    @NSManaged public var professor: NSSet?
     @NSManaged public var course: NSSet?
-
-}
-
-// MARK: Generated accessors for professor
-extension Department {
-
-    @objc(addProfessorObject:)
-    @NSManaged public func addToProfessor(_ value: Professor)
-
-    @objc(removeProfessorObject:)
-    @NSManaged public func removeFromProfessor(_ value: Professor)
-
-    @objc(addProfessor:)
-    @NSManaged public func addToProfessor(_ values: NSSet)
-
-    @objc(removeProfessor:)
-    @NSManaged public func removeFromProfessor(_ values: NSSet)
+    @NSManaged public var professor: NSSet?
+    @NSManaged public var university: University?
 
 }
 
@@ -55,6 +37,23 @@ extension Department {
 
     @objc(removeCourse:)
     @NSManaged public func removeFromCourse(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for professor
+extension Department {
+
+    @objc(addProfessorObject:)
+    @NSManaged public func addToProfessor(_ value: Professor)
+
+    @objc(removeProfessorObject:)
+    @NSManaged public func removeFromProfessor(_ value: Professor)
+
+    @objc(addProfessor:)
+    @NSManaged public func addToProfessor(_ values: NSSet)
+
+    @objc(removeProfessor:)
+    @NSManaged public func removeFromProfessor(_ values: NSSet)
 
 }
 

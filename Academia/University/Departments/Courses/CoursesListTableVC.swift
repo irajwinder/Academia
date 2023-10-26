@@ -7,8 +7,12 @@
 
 import UIKit
 
-class CoursesListTableVC: UIViewController {
-
+class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var courseTable: UITableView!
+    
+    var courses : [Course] = [] // Store the fetched courses
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Course List"
@@ -20,10 +24,35 @@ class CoursesListTableVC: UIViewController {
                     barButtonSystemItem: .add, target: self, action: #selector(addCourse))
             }
         }
+        
+        self.courses = datamanagerInstance.fetchCourse()
+        
+        courseTable.delegate = self
+        courseTable.dataSource = self
     }
     
     //add the Course
     @objc func addCourse() {
         performSegue(withIdentifier: "CourseListToAddCourse", sender: nil)
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return courses.count // Return the count of fetched courses
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "CourseCell", for: indexPath) as! CoursesListTableCell
+        
+        let course = courses[indexPath.row]
+        if let name = course.value(forKeyPath: "courseName") as? String {
+            cell.courseName.text = name
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "CourseListToAddStudent", sender: nil)
+    }
+    
 }

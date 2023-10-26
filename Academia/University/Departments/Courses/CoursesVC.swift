@@ -8,7 +8,11 @@
 import UIKit
 
 class CoursesVC: UIViewController {
-
+    
+    @IBOutlet weak var courseName: UITextField!
+    @IBOutlet weak var courseCode: UITextField!
+    @IBOutlet weak var courseSemester: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Add Course"
@@ -24,7 +28,29 @@ class CoursesVC: UIViewController {
     
     //Save the Course to Core Data
     @objc func saveCourse() {
+        //Validate before saving
+        guard let courseName = self.courseName.text, Validation.isValidName(courseName) else {
+            Validation.showAlert(on: self, with: "Invalid Name", message: "Please enter a valid name.")
+            return
+        }
+        
+        guard let courseCode = self.courseCode.text, Validation.isValidNumber(Int(courseCode)) else {
+            Validation.showAlert(on: self, with: "Invalid Code", message: "Please enter a valid Code.")
+            return
+        }
+        
+        guard let courseSemester = self.courseSemester.text, Validation.isValidName(courseSemester) else {
+            Validation.showAlert(on: self, with: "Invalid Name", message: "Please enter a valid Semester.")
+            return
+        }
+        
+        //Save the data
+        datamanagerInstance.saveCourse(
+            courseName: courseName,
+            courseCode: courseCode,
+            courseSemester: courseSemester
+        )
         navigationController?.popViewController(animated: true)
     }
-
+    
 }

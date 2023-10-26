@@ -7,7 +7,9 @@
 
 import UIKit
 
-class UniversityListTableVC: UIViewController {
+class UniversityListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var universityTable: UITableView!
     
     var universities: [University] = [] // Store the fetched universities
 
@@ -22,13 +24,11 @@ class UniversityListTableVC: UIViewController {
                     barButtonSystemItem: .add, target: self, action: #selector(addUniversity))
             }
         }
+        
         self.universities = datamanagerInstance.fetchUniversity()
-        for university in universities {
-                print("University Name: \(university.universityName)")
-                print("Phone Number: \(university.phoneNumber)")
-                print("Address: \(university.address)")
-                print("-----------------------------")
-            }
+        
+        universityTable.delegate = self
+        universityTable.dataSource = self
     }
     
     //add the university
@@ -36,4 +36,22 @@ class UniversityListTableVC: UIViewController {
         performSegue(withIdentifier: "UniversityListToAddUniversity", sender: nil)
     }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return universities.count // Return the count of fetched Universities
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "UniversityCell", for: indexPath) as! UniversityListTableCell
+        
+        let university = universities[indexPath.row]
+        if let name = university.value(forKeyPath: "universityName") as? String {
+            cell.universityName.text = name
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "UniversityListToAddDepartment", sender: nil)
+    }
 }

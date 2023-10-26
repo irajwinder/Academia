@@ -8,6 +8,8 @@
 import UIKit
 
 class DepartmentsVC: UIViewController {
+    
+    @IBOutlet weak var departmentName: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,16 @@ class DepartmentsVC: UIViewController {
     
     //Save the Department to Core Data
     @objc func saveDepartment() {
+        //Validate before saving
+        guard let departmentName = self.departmentName.text, Validation.isValidName(departmentName) else {
+            Validation.showAlert(on: self, with: "Invalid Name", message: "Please enter a valid name.")
+            return
+        }
+        
+        //Save the data
+        datamanagerInstance.saveDepartment(
+            departmentName: departmentName
+        )
         navigationController?.popViewController(animated: true)
     }
 

@@ -2,7 +2,7 @@
 //  Course+CoreDataProperties.swift
 //  Academia
 //
-//  Created by Rajwinder Singh on 10/24/23.
+//  Created by Rajwinder Singh on 10/25/23.
 //
 //
 
@@ -16,12 +16,12 @@ extension Course {
         return NSFetchRequest<Course>(entityName: "Course")
     }
 
-    @NSManaged public var courseName: String?
     @NSManaged public var courseCode: Int64
+    @NSManaged public var courseName: String?
     @NSManaged public var semester: String?
+    @NSManaged public var department: Department?
     @NSManaged public var professor: Professor?
     @NSManaged public var student: NSSet?
-    @NSManaged public var department: Department?
 
 }
 

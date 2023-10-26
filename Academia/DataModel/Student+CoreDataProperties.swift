@@ -2,7 +2,7 @@
 //  Student+CoreDataProperties.swift
 //  Academia
 //
-//  Created by Rajwinder Singh on 10/24/23.
+//  Created by Rajwinder Singh on 10/25/23.
 //
 //
 
@@ -21,7 +21,6 @@ extension Student {
     @NSManaged public var studentID: Int64
     @NSManaged public var studentName: String?
     @NSManaged public var course: NSSet?
-    @NSManaged public var professor: NSSet?
 
 }
 
@@ -39,23 +38,6 @@ extension Student {
 
     @objc(removeCourse:)
     @NSManaged public func removeFromCourse(_ values: NSSet)
-
-}
-
-// MARK: Generated accessors for professor
-extension Student {
-
-    @objc(addProfessorObject:)
-    @NSManaged public func addToProfessor(_ value: Professor)
-
-    @objc(removeProfessorObject:)
-    @NSManaged public func removeFromProfessor(_ value: Professor)
-
-    @objc(addProfessor:)
-    @NSManaged public func addToProfessor(_ values: NSSet)
-
-    @objc(removeProfessor:)
-    @NSManaged public func removeFromProfessor(_ values: NSSet)
 
 }
 

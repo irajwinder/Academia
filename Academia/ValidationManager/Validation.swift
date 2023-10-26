@@ -27,7 +27,7 @@ struct Validation {
         guard let phoneNumber = phoneNumber, !phoneNumber.isEmpty else {
             return false
         }
-        let phoneRegex = "^[2-9]\\d{2}-\\d{3}-\\d{4}$" // Supports XXX-XXX-XXXX format
+        let phoneRegex = "^[2-9]\\d{2}-\\d{3}-\\d{4}$"
         let phonePredicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
         return phonePredicate.evaluate(with: phoneNumber)
     }

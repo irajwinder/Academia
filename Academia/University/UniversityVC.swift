@@ -30,24 +30,25 @@ class UniversityVC: UIViewController {
     //Save the university to Core Data
     @objc func saveUniversity() {
         //Validate before saving
-        guard let universityName = universityName.text, Validation.isValidName(universityName) else {
+        guard let universityName = self.universityName.text, Validation.isValidName(universityName) else {
             Validation.showAlert(on: self, with: "Invalid Name", message: "Please enter a valid name.")
             return
         }
         
-//        guard let universityPhoneNumber = universityPhoneNumber.text, Validation.isValidPhoneNumber(universityPhoneNumber) else {
-//            Validation.showAlert(on: self, with: "Invalid Number", message: "Please enter a valid phone Number.")
-//            return
-//        }
+        guard let universityPhoneNumber = self.universityPhoneNumber.text, Validation.isValidPhoneNumber(universityPhoneNumber) else {
+            Validation.showAlert(on: self, with: "Invalid Number", message: "Please enter a valid phone Number.")
+            return
+        }
         
-        guard let universityAddress = universityAddress.text, Validation.isValidName(universityAddress) else {
+        guard let universityAddress = self.universityAddress.text, Validation.isValidName(universityAddress) else {
             Validation.showAlert(on: self, with: "Invalid Address", message: "Please enter a valid Address.")
             return
         }
         
+        //Save the data
         datamanagerInstance.saveUniversity(
             universityName: universityName,
-            phoneNumber: universityPhoneNumber.text ?? "",
+            phoneNumber: universityPhoneNumber,
             location: universityAddress
         )
         navigationController?.popViewController(animated: true)
