@@ -25,7 +25,8 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        self.students = datamanagerInstance.fetchStudent()
+        let fetch = datamanagerInstance.fetchAllData().students
+        self.students = fetch
         
         studentTable.delegate = self
         studentTable.dataSource = self
@@ -52,6 +53,6 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "CourseListToAddStudent", sender: nil)
+       // performSegue(withIdentifier: "CourseListToAddStudent", sender: nil)
     }
 }

@@ -40,6 +40,8 @@
 		A2943CDA2AE74FF600268831 /* StudentsListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943CD92AE74FF600268831 /* StudentsListTableVC.swift */; };
 		A2943CDF2AE767E100268831 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943CDE2AE767E100268831 /* Validation.swift */; };
 		A2943CE12AE769AD00268831 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2943CE02AE769AD00268831 /* DataManager.swift */; };
+		A2F516DA2AEB3DFD0028BA30 /* EditUniversityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F516D92AEB3DFD0028BA30 /* EditUniversityVC.swift */; };
+		A2F516DC2AEB67D50028BA30 /* EditDepartmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F516DB2AEB67D50028BA30 /* EditDepartmentVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		A2943CD92AE74FF600268831 /* StudentsListTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsListTableVC.swift; sourceTree = "<group>"; };
 		A2943CDE2AE767E100268831 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		A2943CE02AE769AD00268831 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A2F516D92AEB3DFD0028BA30 /* EditUniversityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUniversityVC.swift; sourceTree = "<group>"; };
+		A2F516DB2AEB67D50028BA30 /* EditDepartmentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDepartmentVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 				A20989E42AE6A58500FD7C2A /* UniversityVC.swift */,
 				A2098A052AE6AEC300FD7C2A /* UniversityListTableVC.swift */,
 				A205260F2AE9869800591FF4 /* UniversityListTableCell.swift */,
+				A2F516D92AEB3DFD0028BA30 /* EditUniversityVC.swift */,
 				A20989F92AE6A8DE00FD7C2A /* Departments */,
 			);
 			path = University;
@@ -152,6 +157,7 @@
 				A20989FC2AE6A9AE00FD7C2A /* DepartmentsVC.swift */,
 				A2943CD32AE74F6E00268831 /* DepartmentsListTableVC.swift */,
 				A20526252AE9CC7200591FF4 /* DepartmentsListTableCell.swift */,
+				A2F516DB2AEB67D50028BA30 /* EditDepartmentVC.swift */,
 				A20989F82AE6A8C500FD7C2A /* Professors */,
 				A20989FA2AE6A8F600FD7C2A /* Courses */,
 			);
@@ -293,7 +299,9 @@
 			files = (
 				A20526102AE9869800591FF4 /* UniversityListTableCell.swift in Sources */,
 				A2943CD82AE74FCD00268831 /* CoursesListTableVC.swift in Sources */,
+				A2F516DA2AEB3DFD0028BA30 /* EditUniversityVC.swift in Sources */,
 				A2943CE12AE769AD00268831 /* DataManager.swift in Sources */,
+				A2F516DC2AEB67D50028BA30 /* EditDepartmentVC.swift in Sources */,
 				A20526402AE9E9BD00591FF4 /* University+CoreDataProperties.swift in Sources */,
 				A205262A2AE9CCD200591FF4 /* CoursesListTableCell.swift in Sources */,
 				A2943CDA2AE74FF600268831 /* StudentsListTableVC.swift in Sources */,

@@ -7,7 +7,18 @@
 
 import UIKit
 
-class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditDepartmentDelegate, AddDepartmentDelegate {
+    func didAddDepartment() {
+        let fetch = datamanagerInstance.fetchAllData().departments
+        self.departments = fetch
+        self.departmentTable.reloadData()
+    }
+    
+    func didUpdateDepartment() {
+        // Reload table view data
+        self.departmentTable.reloadData()
+    }
+    
     
     @IBOutlet weak var departmentTable: UITableView!
     
@@ -24,8 +35,8 @@ class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableView
                     barButtonSystemItem: .add, target: self, action: #selector(addDepartment))
             }
         }
-        
-        self.departments = datamanagerInstance.fetchDepartment()
+        let fetch = datamanagerInstance.fetchAllData().departments
+        self.departments = fetch
         
         departmentTable.delegate = self
         departmentTable.dataSource = self
@@ -33,7 +44,11 @@ class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableView
     
     //add the department
     @objc func addDepartment() {
-        performSegue(withIdentifier: "DepartmentListToAddDepartment", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let departmentsVC = storyboard.instantiateViewController(withIdentifier: "DepartmentsVC") as? DepartmentsVC {
+            departmentsVC.delegate = self
+            navigationController?.pushViewController(departmentsVC, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,7 +66,35 @@ class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "DepartmentListToAddProfessor", sender: nil)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let departmentToDelete = departments[indexPath.row]
+            datamanagerInstance.deleteEntity(departmentToDelete)
+
+            // After deleting, update the Department array and reload the table view
+            let fetch = datamanagerInstance.fetchAllData().departments
+            self.departments = fetch
+            self.departmentTable.reloadData()
+        }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "DepartmentListToDepartmentDetails", sender: nil)
+    }
+    //Pass user data
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DepartmentListToDepartmentDetails" {
+            if let indexPath = departmentTable.indexPathForSelectedRow {
+                // Get the selected university
+                let selectedDepartment = departments[indexPath.row]
+                
+                // Pass the selected University to the destination view controller
+                if let destinationVC = segue.destination as? EditDepartmentVC {
+                    destinationVC.department = selectedDepartment
+                    destinationVC.delegate = self
+                }
+            }
+        }
+    }
+    
 }

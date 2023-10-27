@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol AddDepartmentDelegate: AnyObject {
+    func didAddDepartment()
+}
+
 class DepartmentsVC: UIViewController {
     
     @IBOutlet weak var departmentName: UITextField!
 
+    weak var delegate: AddDepartmentDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Add Department"
@@ -36,6 +42,8 @@ class DepartmentsVC: UIViewController {
         datamanagerInstance.saveDepartment(
             departmentName: departmentName
         )
+        // Call delegate method
+        delegate?.didAddDepartment()
         navigationController?.popViewController(animated: true)
     }
 

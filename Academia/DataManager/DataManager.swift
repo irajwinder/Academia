@@ -46,25 +46,6 @@ class DataManager: NSObject {
         }
     }
     
-    // Fetch University from Core Data
-    func fetchUniversity() -> [University] {
-        // Get a reference to the AppDelegate by accessing the shared instance of UIApplication
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return []
-        }
-        // Access the managed object context from the AppDelegate's persistent container.
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        do {
-            //fetch the University based on the fetch request
-            return try managedContext.fetch(University.fetchRequest())
-        } catch let error as NSError {
-            // Handle the error
-            print("Could not fetch. \(error), \(error.userInfo)")
-            return []
-        }
-    }
-    
     // Save Department data to CoreData
     func saveDepartment(departmentName: String) {
         // Obtains a reference to the AppDelegate
@@ -87,25 +68,6 @@ class DataManager: NSObject {
         } catch let error as NSError {
             // Informs the user that an error occurred while saving the data.
             print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-    
-    // Fetch Department from Core Data
-    func fetchDepartment() -> [Department] {
-        // Get a reference to the AppDelegate by accessing the shared instance of UIApplication
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return []
-        }
-        // Access the managed object context from the AppDelegate's persistent container.
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        do {
-            //fetch the Department based on the fetch request
-            return try managedContext.fetch(Department.fetchRequest())
-        } catch let error as NSError {
-            // Handle the error
-            print("Could not fetch. \(error), \(error.userInfo)")
-            return []
         }
     }
     
@@ -135,25 +97,6 @@ class DataManager: NSObject {
         }
     }
     
-    // Fetch Professor from Core Data
-    func fetchProfessor() -> [Professor] {
-        // Get a reference to the AppDelegate by accessing the shared instance of UIApplication
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return []
-        }
-        // Access the managed object context from the AppDelegate's persistent container.
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        do {
-            //fetch the Professor based on the fetch request
-            return try managedContext.fetch(Professor.fetchRequest())
-        } catch let error as NSError {
-            // Handle the error
-            print("Could not fetch. \(error), \(error.userInfo)")
-            return []
-        }
-    }
-    
     // Save Course data to CoreData
     func saveCourse(courseName: String, courseCode: String, courseSemester: String) {
         // Obtains a reference to the AppDelegate
@@ -178,25 +121,6 @@ class DataManager: NSObject {
         } catch let error as NSError {
             // Informs the user that an error occurred while saving the data.
             print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-    
-    // Fetch Course from Core Data
-    func fetchCourse() -> [Course] {
-        // Get a reference to the AppDelegate by accessing the shared instance of UIApplication
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return []
-        }
-        // Access the managed object context from the AppDelegate's persistent container.
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        do {
-            //fetch the Course based on the fetch request
-            return try managedContext.fetch(Course.fetchRequest())
-        } catch let error as NSError {
-            // Handle the error
-            print("Could not fetch. \(error), \(error.userInfo)")
-            return []
         }
     }
     
@@ -228,24 +152,97 @@ class DataManager: NSObject {
         }
     }
     
-    // Fetch Student from Core Data
-    func fetchStudent() -> [Student] {
+    //Update university Data
+    func updateUniversity(university: University, editUniversityName: String, editUniversityNumber: String, editUniversityAddress: String) {
+        // Obtains a reference to the AppDelegate
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        // Accessing the managed context from the persistent container
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        // Update the university data
+        university.universityName = editUniversityName
+        university.phoneNumber = Int64(editUniversityNumber) ?? 0
+        university.address = editUniversityAddress
+
+        do {
+            // Attempting to save the changes made to the managed context
+            try managedContext.save()
+            print("University data updated successfully.")
+        } catch let error as NSError {
+            // Informs the user that an error occurred while saving the data.
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    //Update department Data
+    func updateDepartment(department: Department, editDepartmentName: String) {
+        // Obtains a reference to the AppDelegate
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        // Accessing the managed context from the persistent container
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        // Update the user data
+        department.departmentName = editDepartmentName
+
+        do {
+            // Attempting to save the changes made to the managed context
+            try managedContext.save()
+            print("Department data updated successfully.")
+        } catch let error as NSError {
+            // Informs the user that an error occurred while saving the data.
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    // Fetch data for University, Department, Professor, Course, Student from Core Data
+    func fetchAllData() -> (universities: [University], departments: [Department], professors: [Professor], courses: [Course], students: [Student]) {
         // Get a reference to the AppDelegate by accessing the shared instance of UIApplication
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return []
+            return ([], [], [], [], [])
         }
         // Access the managed object context from the AppDelegate's persistent container.
         let managedContext = appDelegate.persistentContainer.viewContext
-        
+
         do {
-            //fetch the Student based on the fetch request
-            return try managedContext.fetch(Student.fetchRequest())
+            // Fetch all the entities
+            let universities = try managedContext.fetch(University.fetchRequest())
+            let departments = try managedContext.fetch(Department.fetchRequest())
+            let professors = try managedContext.fetch(Professor.fetchRequest())
+            let courses = try managedContext.fetch(Course.fetchRequest())
+            let students = try managedContext.fetch(Student.fetchRequest())
+
+            return (universities, departments, professors, courses, students)
         } catch let error as NSError {
             // Handle the error
             print("Could not fetch. \(error), \(error.userInfo)")
-            return []
+            return ([], [], [], [], [])
         }
     }
+    
+    //Delete function for deleting entities
+    func deleteEntity(_ entity: NSManagedObject) {
+        // Obtains a reference to the AppDelegate
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        // Accessing the managed context from the persistent container
+        let managedContext = appDelegate.persistentContainer.viewContext
+        managedContext.delete(entity)
+        
+        do {
+            // Attempting to save the changes made to the managed context
+            try managedContext.save()
+            print("\(entity.entity.name ?? "Entity") deleted successfully.")
+        } catch let error as NSError {
+            // Informs the user that an error occurred while saving the data.
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+
 }
 
 let datamanagerInstance = DataManager.sharedInstance

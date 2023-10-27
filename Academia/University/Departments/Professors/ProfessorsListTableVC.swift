@@ -25,7 +25,8 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         
-        self.professors = datamanagerInstance.fetchProfessor()
+        let fetch = datamanagerInstance.fetchAllData().professors
+        self.professors = fetch
         
         professorTable.delegate = self
         professorTable.dataSource = self
@@ -49,6 +50,18 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let professorToDelete = professors[indexPath.row]
+            datamanagerInstance.deleteEntity(professorToDelete)
+
+            // After deleting, update the Department array and reload the table view
+            let fetch = datamanagerInstance.fetchAllData().professors
+            self.professors = fetch
+            self.professorTable.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

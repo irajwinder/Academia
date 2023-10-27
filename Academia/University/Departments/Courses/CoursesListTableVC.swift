@@ -25,7 +25,8 @@ class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
-        self.courses = datamanagerInstance.fetchCourse()
+        let fetch = datamanagerInstance.fetchAllData().courses
+        self.courses = fetch
         
         courseTable.delegate = self
         courseTable.dataSource = self
