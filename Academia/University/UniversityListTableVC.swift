@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import CoreData
 
 class UniversityListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditUniversityDelegate, AddUniversityDelegate {
     func didAddUniversity() {
-        let fetch = datamanagerInstance.fetchAllData().universities
+        let fetch = datamanagerInstance.fetchUniversity()
         self.universities = fetch
         self.universityTable.reloadData()
     }
@@ -34,8 +35,12 @@ class UniversityListTableVC: UIViewController, UITableViewDelegate, UITableViewD
                     barButtonSystemItem: .add, target: self, action: #selector(addUniversity))
             }
         }
-        let fetch = datamanagerInstance.fetchAllData().universities
+        let fetch = datamanagerInstance.fetchUniversity()
         self.universities = fetch
+        
+        
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        print(paths[0])
         
         universityTable.delegate = self
         universityTable.dataSource = self
@@ -71,7 +76,7 @@ class UniversityListTableVC: UIViewController, UITableViewDelegate, UITableViewD
             datamanagerInstance.deleteEntity(universityToDelete)
 
             // After deleting, update the universities array and reload the table view
-            let fetch = datamanagerInstance.fetchAllData().universities
+            let fetch = datamanagerInstance.fetchUniversity()
             self.universities = fetch
             self.universityTable.reloadData()
         }
@@ -90,6 +95,7 @@ class UniversityListTableVC: UIViewController, UITableViewDelegate, UITableViewD
                 // Pass the selected University to the destination view controller
                 if let destinationVC = segue.destination as? EditUniversityVC {
                     destinationVC.university = selectedUniversity
+                    destinationVC.selectedUniversityName = selectedUniversity.universityName!
                     destinationVC.delegate = self
                 }
             }

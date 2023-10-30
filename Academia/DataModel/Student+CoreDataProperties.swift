@@ -2,7 +2,7 @@
 //  Student+CoreDataProperties.swift
 //  Academia
 //
-//  Created by Rajwinder Singh on 10/25/23.
+//  Created by Rajwinder Singh on 10/27/23.
 //
 //
 
@@ -16,7 +16,7 @@ extension Student {
         return NSFetchRequest<Student>(entityName: "Student")
     }
 
-    @NSManaged public var gpa: String?
+    @NSManaged public var gpa: Double
     @NSManaged public var major: String?
     @NSManaged public var studentID: Int64
     @NSManaged public var studentName: String?

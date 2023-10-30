@@ -17,6 +17,8 @@ class DepartmentsVC: UIViewController {
 
     weak var delegate: AddDepartmentDelegate?
     
+    var selectedUniversity: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Add Department"
@@ -28,6 +30,8 @@ class DepartmentsVC: UIViewController {
                     barButtonSystemItem: .save, target: self, action: #selector(saveDepartment))
             }
         }
+        
+        print(selectedUniversity!)
     }
     
     //Save the Department to Core Data
@@ -40,7 +44,9 @@ class DepartmentsVC: UIViewController {
         
         //Save the data
         datamanagerInstance.saveDepartment(
-            departmentName: departmentName
+            departmentName: departmentName, 
+            universityName: selectedUniversity!,
+            entity: "Department"
         )
         // Call delegate method
         delegate?.didAddDepartment()

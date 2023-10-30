@@ -7,7 +7,16 @@
 
 import UIKit
 
-class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditStudentDelegate, AddStudentDelegate {
+    func didAddStudent() {
+        let fetch = datamanagerInstance.fetchStudent()
+        self.students = fetch
+        self.studentTable.reloadData()
+    }
+    func didUpdateStudent() {
+        // Reload table view data
+        self.studentTable.reloadData()
+    }
     
     @IBOutlet weak var studentTable: UITableView!
     
@@ -25,7 +34,7 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        let fetch = datamanagerInstance.fetchAllData().students
+        let fetch = datamanagerInstance.fetchStudent()
         self.students = fetch
         
         studentTable.delegate = self
@@ -34,7 +43,11 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
     
     //add the Student
     @objc func addStudent() {
-        performSegue(withIdentifier: "StudentListToAddStudent", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let studentsVC = storyboard.instantiateViewController(withIdentifier: "StudentsVC") as? StudentsVC {
+            studentsVC.delegate = self
+            navigationController?.pushViewController(studentsVC, animated: true)
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,7 +65,34 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let studentToDelete = students[indexPath.row]
+            datamanagerInstance.deleteEntity(studentToDelete)
+
+            // After deleting, update the student array and reload the table view
+            let fetch = datamanagerInstance.fetchStudent()
+            self.students = fetch
+            self.studentTable.reloadData()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // performSegue(withIdentifier: "CourseListToAddStudent", sender: nil)
+        performSegue(withIdentifier: "StudentListToStudentDetails", sender: nil)
+    }
+    //Pass the data
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "StudentListToStudentDetails" {
+            if let indexPath = studentTable.indexPathForSelectedRow {
+                // Get the selected student
+                let selectedStudent = students[indexPath.row]
+                
+                // Pass the selected student to the destination view controller
+                if let destinationVC = segue.destination as? EditStudentVC {
+                    destinationVC.student = selectedStudent
+                    destinationVC.delegate = self
+                }
+            }
+        }
     }
 }

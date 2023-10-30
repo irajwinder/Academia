@@ -7,7 +7,16 @@
 
 import UIKit
 
-class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditProfessorDelegate, AddProfessorDelegate {
+    func didAddProfessor() {
+        let fetch = datamanagerInstance.fetchProfessor()
+        self.professors = fetch
+        self.professorTable.reloadData()
+    }
+    func didUpdateProfessor() {
+        // Reload table view data
+        self.professorTable.reloadData()
+    }
     
     @IBOutlet weak var professorTable: UITableView!
     
@@ -25,7 +34,7 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         
-        let fetch = datamanagerInstance.fetchAllData().professors
+        let fetch = datamanagerInstance.fetchProfessor()
         self.professors = fetch
         
         professorTable.delegate = self
@@ -34,7 +43,11 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
     
     //add the Professor
     @objc func addProfessor() {
-        performSegue(withIdentifier: "ProfessorListToAddProfessor", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let professorsVC = storyboard.instantiateViewController(withIdentifier: "ProfessorsVC") as? ProfessorsVC {
+            professorsVC.delegate = self
+            navigationController?.pushViewController(professorsVC, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,15 +70,30 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
             let professorToDelete = professors[indexPath.row]
             datamanagerInstance.deleteEntity(professorToDelete)
 
-            // After deleting, update the Department array and reload the table view
-            let fetch = datamanagerInstance.fetchAllData().professors
+            // After deleting, update the Professor array and reload the table view
+            let fetch = datamanagerInstance.fetchProfessor()
             self.professors = fetch
             self.professorTable.reloadData()
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //performSegue(withIdentifier: "DepartmentListToAddProfessor", sender: nil)
+        performSegue(withIdentifier: "ProfessorListToProfessorDetails", sender: nil)
+    }
+    //Pass the data
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ProfessorListToProfessorDetails" {
+            if let indexPath = professorTable.indexPathForSelectedRow {
+                // Get the selected Professor
+                let selectedProfessor = professors[indexPath.row]
+                
+                // Pass the selected Professor to the destination view controller
+                if let destinationVC = segue.destination as? EditProfessorVC {
+                    destinationVC.professor = selectedProfessor
+                    destinationVC.delegate = self
+                }
+            }
+        }
     }
 
 }

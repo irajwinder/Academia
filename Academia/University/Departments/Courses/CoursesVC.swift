@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol AddCourseDelegate: AnyObject {
+    func didAddCourse()
+}
+
 class CoursesVC: UIViewController {
     
     @IBOutlet weak var courseName: UITextField!
     @IBOutlet weak var courseCode: UITextField!
     @IBOutlet weak var courseSemester: UITextField!
+    
+    weak var delegate: AddCourseDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +56,8 @@ class CoursesVC: UIViewController {
             courseCode: courseCode,
             courseSemester: courseSemester
         )
+        // Call delegate method
+        delegate?.didAddCourse()
         navigationController?.popViewController(animated: true)
     }
     

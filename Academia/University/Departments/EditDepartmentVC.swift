@@ -32,11 +32,13 @@ class EditDepartmentVC: UIViewController {
                         title: "Save", style: .plain, target: self, action: #selector(saveButton))
                 }else {
                     // If editing is not enabled, show "Edit" button
-                    let editButtonItem = UIBarButtonItem(
+                    let editButton = UIBarButtonItem(
                         title: "Edit", style: .plain, target: self, action: #selector(editButton))
-                    let addDepartmentButtonItem = UIBarButtonItem(
+                    let departmentButton = UIBarButtonItem(
                         title: "Professor(s)", style: .plain, target: self, action: #selector(professor))
-                    self.navigationItem.rightBarButtonItems = [editButtonItem, addDepartmentButtonItem]
+                    let courseButton = UIBarButtonItem(
+                        title: "Course(s)", style: .plain, target: self, action: #selector(course))
+                    self.navigationItem.rightBarButtonItems = [editButton, departmentButton, courseButton]
                 }
             }
         }
@@ -85,6 +87,13 @@ class EditDepartmentVC: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let departmentsListTableVC = storyboard.instantiateViewController(withIdentifier: "ProfessorsListTableVC") as? ProfessorsListTableVC {
             navigationController?.pushViewController(departmentsListTableVC, animated: true)
+        }
+    }
+    
+    @objc func course() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let coursesListTableVC = storyboard.instantiateViewController(withIdentifier: "CoursesListTableVC") as? CoursesListTableVC {
+            navigationController?.pushViewController(coursesListTableVC, animated: true)
         }
     }
     

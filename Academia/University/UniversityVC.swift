@@ -54,8 +54,9 @@ class UniversityVC: UIViewController {
         //Save the data
         datamanagerInstance.saveUniversity(
             universityName: universityName,
-            phoneNumber: universityPhoneNumber,
-            location: universityAddress
+            phoneNumber: Int64(universityPhoneNumber) ?? 0,
+            location: universityAddress,
+            entity: "University"
         )
         // Call delegate method
         delegate?.didAddUniversity()

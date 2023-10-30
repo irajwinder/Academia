@@ -7,7 +7,16 @@
 
 import UIKit
 
-class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditCourseDelegate, AddCourseDelegate {
+    func didAddCourse() {
+        let fetch = datamanagerInstance.fetchCourse()
+        self.courses = fetch
+        self.courseTable.reloadData()
+    }
+    func didUpdateCourse() {
+        // Reload table view data
+        self.courseTable.reloadData()
+    }
     
     @IBOutlet weak var courseTable: UITableView!
     
@@ -25,7 +34,7 @@ class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
-        let fetch = datamanagerInstance.fetchAllData().courses
+        let fetch = datamanagerInstance.fetchCourse()
         self.courses = fetch
         
         courseTable.delegate = self
@@ -34,7 +43,11 @@ class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewData
     
     //add the Course
     @objc func addCourse() {
-        performSegue(withIdentifier: "CourseListToAddCourse", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let coursesVC = storyboard.instantiateViewController(withIdentifier: "CoursesVC") as? CoursesVC {
+            coursesVC.delegate = self
+            navigationController?.pushViewController(coursesVC, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,8 +65,35 @@ class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let courseToDelete = courses[indexPath.row]
+            datamanagerInstance.deleteEntity(courseToDelete)
+
+            // After deleting, update the course array and reload the table view
+            let fetch = datamanagerInstance.fetchCourse()
+            self.courses = fetch
+            self.courseTable.reloadData()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "CourseListToAddStudent", sender: nil)
+        performSegue(withIdentifier: "CourseListToCourseDetails", sender: nil)
+    }
+    //Pass the data
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CourseListToCourseDetails" {
+            if let indexPath = courseTable.indexPathForSelectedRow {
+                // Get the selected course
+                let selectedCourse = courses[indexPath.row]
+                
+                // Pass the selected course to the destination view controller
+                if let destinationVC = segue.destination as? EditCourseVC {
+                    destinationVC.course = selectedCourse
+                    destinationVC.delegate = self
+                }
+            }
+        }
     }
     
 }

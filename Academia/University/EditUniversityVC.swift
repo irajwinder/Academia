@@ -21,6 +21,8 @@ class EditUniversityVC: UIViewController {
     var isEditingEnabled = false
     weak var delegate: EditUniversityDelegate?
     
+    var selectedUniversityName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "University Details"
@@ -34,11 +36,11 @@ class EditUniversityVC: UIViewController {
                         title: "Save", style: .plain, target: self, action: #selector(saveButton))
                 }else {
                     // If editing is not enabled, show "Edit" button
-                    let editButtonItem = UIBarButtonItem(
+                    let editButton = UIBarButtonItem(
                         title: "Edit", style: .plain, target: self, action: #selector(editButton))
-                    let addDepartmentButtonItem = UIBarButtonItem(
+                    let departmentButton = UIBarButtonItem(
                         title: "Department(s)", style: .plain, target: self, action: #selector(department))
-                    self.navigationItem.rightBarButtonItems = [editButtonItem, addDepartmentButtonItem]
+                    self.navigationItem.rightBarButtonItems = [editButton, departmentButton]
                 }
             }
         }
@@ -54,6 +56,8 @@ class EditUniversityVC: UIViewController {
             editUniversityNumber.text = String(university.phoneNumber)
             editUniversityAddress.text = university.address
         }
+        
+        print(selectedUniversityName!)
     }
     
     @objc func editButton() {
@@ -63,7 +67,6 @@ class EditUniversityVC: UIViewController {
     }
     
     @objc func saveButton() {
-        //Validate before saving
         //Validate before saving
         guard let universityName = self.editUniversityName.text, Validation.isValidName(universityName) else {
             Validation.showAlert(on: self, with: "Invalid Name", message: "Please enter a valid name.")
@@ -102,6 +105,7 @@ class EditUniversityVC: UIViewController {
     @objc func department() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let departmentsListTableVC = storyboard.instantiateViewController(withIdentifier: "DepartmentsListTableVC") as? DepartmentsListTableVC {
+            departmentsListTableVC.selectedUniversity = self.selectedUniversityName
             navigationController?.pushViewController(departmentsListTableVC, animated: true)
         }
     }
