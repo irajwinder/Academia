@@ -30,18 +30,12 @@ class EditUniversityVC: UIViewController {
         // Check the current view controller's identifier
         if let currentIdentifier = restorationIdentifier {
             if currentIdentifier == "EditUniversityVC" {
-                if isEditingEnabled {
-                    // If editing is enabled, show "Save" button
-                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-                        title: "Save", style: .plain, target: self, action: #selector(saveButton))
-                }else {
-                    // If editing is not enabled, show "Edit" button
-                    let editButton = UIBarButtonItem(
-                        title: "Edit", style: .plain, target: self, action: #selector(editButton))
-                    let departmentButton = UIBarButtonItem(
-                        title: "Department(s)", style: .plain, target: self, action: #selector(department))
-                    self.navigationItem.rightBarButtonItems = [editButton, departmentButton]
-                }
+                // Inside viewDidLoad
+                let threeDotsButton = UIButton(type: .system)
+                threeDotsButton.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+                threeDotsButton.addTarget(self, action: #selector(showPopoverMenu), for: .touchUpInside)
+                let threeDotsBarButtonItem = UIBarButtonItem(customView: threeDotsButton)
+                self.navigationItem.rightBarButtonItem = threeDotsBarButtonItem
             }
         }
         
@@ -56,9 +50,38 @@ class EditUniversityVC: UIViewController {
             editUniversityNumber.text = String(university.phoneNumber)
             editUniversityAddress.text = university.address
         }
-        
-        print(selectedUniversityName!)
     }
+    
+    @objc func showPopoverMenu(sender: UIBarButtonItem) {
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        if isEditingEnabled {
+            let saveAction = UIAlertAction(title: "Save", style: .default, handler: { _ in
+                self.saveButton()
+            })
+            optionMenu.addAction(saveAction)
+        } else {
+            let editAction = UIAlertAction(title: "Edit", style: .default, handler: { _ in
+                self.editButton()
+            })
+            let departmentAction = UIAlertAction(title: "Department(s)", style: .default, handler: { _ in
+                self.department()
+            })
+            optionMenu.addAction(editAction)
+            optionMenu.addAction(departmentAction)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            optionMenu.addAction(cancelAction)
+
+        if let popoverController = optionMenu.popoverPresentationController {
+            popoverController.barButtonItem = sender
+            popoverController.permittedArrowDirections = .right
+            popoverController.sourceView = self.view
+        }
+        present(optionMenu, animated: true, completion: nil)
+    }
+
     
     @objc func editButton() {
         //Enable editing and change button to "Save"

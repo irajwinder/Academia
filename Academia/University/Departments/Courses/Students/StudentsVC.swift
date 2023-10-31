@@ -20,6 +20,8 @@ class StudentsVC: UIViewController {
     
     weak var delegate: AddStudentDelegate?
     
+    var selectedCourse: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Add Student"
@@ -31,12 +33,13 @@ class StudentsVC: UIViewController {
                     barButtonSystemItem: .save, target: self, action: #selector(saveStudent))
             }
         }
+        print(selectedCourse!)
     }
     
     //Save the Student to Core Data
     @objc func saveStudent() {
         //Validate before saving
-        guard let studentID = self.studentID.text, Validation.isValidName(studentID) else {
+        guard let studentID = self.studentID.text, Validation.isValidNumber(Int(studentID)) else {
             Validation.showAlert(on: self, with: "Invalid ID", message: "Please enter a valid ID.")
             return
         }
@@ -51,13 +54,14 @@ class StudentsVC: UIViewController {
             return
         }
         
-        guard let studentGPA = self.studentGPA.text, Validation.isValidName(studentGPA) else {
+        guard let studentGPA = self.studentGPA.text, Validation.isValidGPA(Double(studentGPA)) else {
             Validation.showAlert(on: self, with: "Invalid GPA", message: "Please enter a valid GPA.")
             return
         }
         
         //Save the data
         datamanagerInstance.saveStudent(
+            courseName: selectedCourse!,
             studentID: studentID,
             studentName: studentName,
             studentMajor: studentMajor,

@@ -23,6 +23,13 @@ struct Validation {
         return true
     }
     
+    static func isValidGPA(_ number: Double?) -> Bool {
+        guard let number = number, number > 0.0 else {
+            return false
+        }
+        return true
+    }
+    
     static func isValidPhoneNumber(_ phoneNumber: String?) -> Bool {
         guard let phoneNumber = phoneNumber, !phoneNumber.isEmpty else {
             return false

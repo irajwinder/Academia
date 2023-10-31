@@ -30,8 +30,6 @@ class DepartmentsVC: UIViewController {
                     barButtonSystemItem: .save, target: self, action: #selector(saveDepartment))
             }
         }
-        
-        print(selectedUniversity!)
     }
     
     //Save the Department to Core Data
@@ -44,8 +42,8 @@ class DepartmentsVC: UIViewController {
         
         //Save the data
         datamanagerInstance.saveDepartment(
-            departmentName: departmentName, 
-            universityName: selectedUniversity!,
+            universityName: selectedUniversity!, 
+            departmentName: departmentName,
             entity: "Department"
         )
         // Call delegate method

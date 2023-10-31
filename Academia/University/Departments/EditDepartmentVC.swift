@@ -18,6 +18,8 @@ class EditDepartmentVC: UIViewController {
     var department: Department?
     var isEditingEnabled = false
     weak var delegate: EditDepartmentDelegate?
+    
+    var selectedDepartmentName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +88,7 @@ class EditDepartmentVC: UIViewController {
     @objc func professor() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let departmentsListTableVC = storyboard.instantiateViewController(withIdentifier: "ProfessorsListTableVC") as? ProfessorsListTableVC {
+            departmentsListTableVC.selectedDepartment = self.selectedDepartmentName
             navigationController?.pushViewController(departmentsListTableVC, animated: true)
         }
     }
@@ -93,6 +96,7 @@ class EditDepartmentVC: UIViewController {
     @objc func course() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let coursesListTableVC = storyboard.instantiateViewController(withIdentifier: "CoursesListTableVC") as? CoursesListTableVC {
+            coursesListTableVC.selectedDepartment = self.selectedDepartmentName
             navigationController?.pushViewController(coursesListTableVC, animated: true)
         }
     }

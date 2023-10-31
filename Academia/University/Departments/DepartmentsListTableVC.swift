@@ -23,7 +23,6 @@ class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var departmentTable: UITableView!
     
     var departments : [Department] = [] // Store the fetched departments
-    
     var selectedUniversity: String? // Store the selected university
     
     override func viewDidLoad() {
@@ -37,16 +36,12 @@ class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableView
                     barButtonSystemItem: .add, target: self, action: #selector(addDepartment))
             }
         }
-//        let fetch = datamanagerInstance.fetchDepartment()
-//        self.departments = fetch
         // Fetch departments for the selected university
         let fetch = datamanagerInstance.fetchDepartment(universityName: selectedUniversity!)
         self.departments = fetch
         
         departmentTable.delegate = self
         departmentTable.dataSource = self
-        
-        print(selectedUniversity!)
     }
     
     //add the department
@@ -99,6 +94,7 @@ class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableView
                 // Pass the selected Department to the destination view controller
                 if let destinationVC = segue.destination as? EditDepartmentVC {
                     destinationVC.department = selectedDepartment
+                    destinationVC.selectedDepartmentName = selectedDepartment.departmentName!
                     destinationVC.delegate = self
                 }
             }

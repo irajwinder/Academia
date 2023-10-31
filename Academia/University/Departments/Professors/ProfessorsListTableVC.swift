@@ -9,7 +9,7 @@ import UIKit
 
 class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditProfessorDelegate, AddProfessorDelegate {
     func didAddProfessor() {
-        let fetch = datamanagerInstance.fetchProfessor()
+        let fetch = datamanagerInstance.fetchProfessor(departmentName: selectedDepartment!)
         self.professors = fetch
         self.professorTable.reloadData()
     }
@@ -21,6 +21,7 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var professorTable: UITableView!
     
     var professors : [Professor] = [] // Store the fetched professors
+    var selectedDepartment: String? // Store the selected department
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,8 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
                     barButtonSystemItem: .add, target: self, action: #selector(addProfessor))
             }
         }
-        
-        let fetch = datamanagerInstance.fetchProfessor()
+        // Fetch professors for the selected department
+        let fetch = datamanagerInstance.fetchProfessor(departmentName: selectedDepartment!)
         self.professors = fetch
         
         professorTable.delegate = self
@@ -46,6 +47,7 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let professorsVC = storyboard.instantiateViewController(withIdentifier: "ProfessorsVC") as? ProfessorsVC {
             professorsVC.delegate = self
+            professorsVC.selectedDepartment = self.selectedDepartment!
             navigationController?.pushViewController(professorsVC, animated: true)
         }
     }
@@ -71,7 +73,7 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
             datamanagerInstance.deleteEntity(professorToDelete)
 
             // After deleting, update the Professor array and reload the table view
-            let fetch = datamanagerInstance.fetchProfessor()
+            let fetch = datamanagerInstance.fetchProfessor(departmentName: selectedDepartment!)
             self.professors = fetch
             self.professorTable.reloadData()
         }

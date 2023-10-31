@@ -20,6 +20,8 @@ class EditCourseVC: UIViewController {
     var course: Course?
     var isEditingEnabled = false
     weak var delegate: EditCourseDelegate?
+    
+    var selectedCourseName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +56,6 @@ class EditCourseVC: UIViewController {
             editCourseCode.text = String(course.courseCode)
             editCourseSemester.text = course.semester
         }
-
     }
     
     @objc func editButton() {
@@ -102,6 +103,7 @@ class EditCourseVC: UIViewController {
     @objc func student() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let studentsListTableVC = storyboard.instantiateViewController(withIdentifier: "StudentsListTableVC") as? StudentsListTableVC {
+            studentsListTableVC.selectedCourse = self.selectedCourseName
             navigationController?.pushViewController(studentsListTableVC, animated: true)
         }
     }

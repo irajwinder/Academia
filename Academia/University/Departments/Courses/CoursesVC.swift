@@ -19,6 +19,8 @@ class CoursesVC: UIViewController {
     
     weak var delegate: AddCourseDelegate?
     
+    var selectedDepartment: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Add Course"
@@ -52,6 +54,7 @@ class CoursesVC: UIViewController {
         
         //Save the data
         datamanagerInstance.saveCourse(
+            departmentName: selectedDepartment!, 
             courseName: courseName,
             courseCode: courseCode,
             courseSemester: courseSemester

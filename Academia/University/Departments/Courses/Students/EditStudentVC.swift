@@ -21,6 +21,8 @@ class EditStudentVC: UIViewController {
     var student: Student?
     var isEditingEnabled = false
     weak var delegate: EditStudentDelegate?
+    
+    var selectedStudentName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,7 @@ class EditStudentVC: UIViewController {
             editStudentMajor.text = student.major
             editStudentGPA.text = String(student.gpa)
         }
+        print(selectedStudentName!)
     }
     
     @objc func editButton() {

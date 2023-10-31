@@ -9,7 +9,7 @@ import UIKit
 
 class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditCourseDelegate, AddCourseDelegate {
     func didAddCourse() {
-        let fetch = datamanagerInstance.fetchCourse()
+        let fetch = datamanagerInstance.fetchCourse(departmentName: selectedDepartment!)
         self.courses = fetch
         self.courseTable.reloadData()
     }
@@ -21,6 +21,7 @@ class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var courseTable: UITableView!
     
     var courses : [Course] = [] // Store the fetched courses
+    var selectedDepartment: String? // Store the selected department
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,8 @@ class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewData
                     barButtonSystemItem: .add, target: self, action: #selector(addCourse))
             }
         }
-        
-        let fetch = datamanagerInstance.fetchCourse()
+        // Fetch courses for the selected department
+        let fetch = datamanagerInstance.fetchCourse(departmentName: selectedDepartment!)
         self.courses = fetch
         
         courseTable.delegate = self
@@ -46,6 +47,7 @@ class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewData
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let coursesVC = storyboard.instantiateViewController(withIdentifier: "CoursesVC") as? CoursesVC {
             coursesVC.delegate = self
+            coursesVC.selectedDepartment = self.selectedDepartment!
             navigationController?.pushViewController(coursesVC, animated: true)
         }
     }
@@ -71,7 +73,7 @@ class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewData
             datamanagerInstance.deleteEntity(courseToDelete)
 
             // After deleting, update the course array and reload the table view
-            let fetch = datamanagerInstance.fetchCourse()
+            let fetch = datamanagerInstance.fetchCourse(departmentName: selectedDepartment!)
             self.courses = fetch
             self.courseTable.reloadData()
         }
@@ -90,6 +92,7 @@ class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewData
                 // Pass the selected course to the destination view controller
                 if let destinationVC = segue.destination as? EditCourseVC {
                     destinationVC.course = selectedCourse
+                    destinationVC.selectedCourseName = selectedCourse.courseName!
                     destinationVC.delegate = self
                 }
             }

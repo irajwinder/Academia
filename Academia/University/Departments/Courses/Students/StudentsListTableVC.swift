@@ -21,6 +21,7 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var studentTable: UITableView!
     
     var students : [Student] = [] // Store the fetched students
+    var selectedCourse: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,7 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         studentTable.delegate = self
         studentTable.dataSource = self
+        print(selectedCourse!)
     }
     
     //add the Student
@@ -46,6 +48,7 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let studentsVC = storyboard.instantiateViewController(withIdentifier: "StudentsVC") as? StudentsVC {
             studentsVC.delegate = self
+            studentsVC.selectedCourse = self.selectedCourse!
             navigationController?.pushViewController(studentsVC, animated: true)
         }
     }
@@ -90,6 +93,7 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
                 // Pass the selected student to the destination view controller
                 if let destinationVC = segue.destination as? EditStudentVC {
                     destinationVC.student = selectedStudent
+                    destinationVC.selectedStudentName = selectedStudent.studentName!
                     destinationVC.delegate = self
                 }
             }
