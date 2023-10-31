@@ -152,7 +152,7 @@ class DataManager: NSObject {
                 newCourse.setValue(department, forKey: "department")
             }
         } catch let error as NSError {
-            print("Error fetching Department: \(error), \(error.userInfo)")
+            print("Error fetching Course: \(error), \(error.userInfo)")
         }
         
         do {
@@ -186,11 +186,12 @@ class DataManager: NSObject {
         // Fetch the Course entity based on the given Course name
         let fetchRequest = Course.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "courseName == %@", courseName)
+        print(fetchRequest)
         do {
             let results = try managedContext.fetch(fetchRequest)
             if let course = results.first {
-                // Establish the relationship between the student and course
                 print(course)
+                // Establish the relationship between the student and course
                 newStudent.setValue(course, forKey: "course")
             }
         } catch let error as NSError {
@@ -408,7 +409,7 @@ class DataManager: NSObject {
     }
     
     // Fetch Student from Core Data
-    func fetchStudent() -> [Student] {
+    func fetchStudent(courseName: String) -> [Student] {
         // Get a reference to the AppDelegate by accessing the shared instance of UIApplication
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return []
@@ -417,8 +418,10 @@ class DataManager: NSObject {
         let managedContext = appDelegate.persistentContainer.viewContext
 
         do {
-            //fetch the Student based on the fetch request
-            return try managedContext.fetch(Student.fetchRequest())
+            //fetch the Student based on the fetch request with a predicate to filter by the selected courses
+            let fetchRequest = Student.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "course.courseName == %@", courseName)
+            return try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
             // Handle the error
             print("Could not fetch. \(error), \(error.userInfo)")

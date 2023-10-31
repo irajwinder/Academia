@@ -9,7 +9,7 @@ import UIKit
 
 class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditStudentDelegate, AddStudentDelegate {
     func didAddStudent() {
-        let fetch = datamanagerInstance.fetchStudent()
+        let fetch = datamanagerInstance.fetchStudent(courseName: selectedCourse!)
         self.students = fetch
         self.studentTable.reloadData()
     }
@@ -35,7 +35,7 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        let fetch = datamanagerInstance.fetchStudent()
+        let fetch = datamanagerInstance.fetchStudent(courseName: selectedCourse!)
         self.students = fetch
         
         studentTable.delegate = self
@@ -74,7 +74,7 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
             datamanagerInstance.deleteEntity(studentToDelete)
 
             // After deleting, update the student array and reload the table view
-            let fetch = datamanagerInstance.fetchStudent()
+            let fetch = datamanagerInstance.fetchStudent(courseName: selectedCourse!)
             self.students = fetch
             self.studentTable.reloadData()
         }

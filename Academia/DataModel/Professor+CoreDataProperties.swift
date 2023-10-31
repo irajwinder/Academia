@@ -2,7 +2,7 @@
 //  Professor+CoreDataProperties.swift
 //  Academia
 //
-//  Created by Rajwinder Singh on 10/27/23.
+//  Created by Rajwinder Singh on 10/31/23.
 //
 //
 
