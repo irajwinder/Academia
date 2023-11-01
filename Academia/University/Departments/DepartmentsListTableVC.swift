@@ -9,7 +9,7 @@ import UIKit
 
 class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditDepartmentDelegate, AddDepartmentDelegate {
     func didAddDepartment() {
-        let fetch = datamanagerInstance.fetchDepartment(universityName: selectedUniversity!)
+        let fetch = datamanagerInstance.fetchDepartmentsFromUniversity(universityName: selectedUniversity!)
         self.departments = fetch
         self.departmentTable.reloadData()
     }
@@ -37,7 +37,7 @@ class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableView
             }
         }
         // Fetch departments for the selected university
-        let fetch = datamanagerInstance.fetchDepartment(universityName: selectedUniversity!)
+        let fetch = datamanagerInstance.fetchDepartmentsFromUniversity(universityName: selectedUniversity!)
         self.departments = fetch
         
         departmentTable.delegate = self
@@ -75,7 +75,7 @@ class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableView
             datamanagerInstance.deleteEntity(departmentToDelete)
 
             // After deleting, updates the Department array and reload the table view
-            let fetch = datamanagerInstance.fetchDepartment(universityName: selectedUniversity!)
+            let fetch = datamanagerInstance.fetchDepartmentsFromUniversity(universityName: selectedUniversity!)
             self.departments = fetch
             self.departmentTable.reloadData()
         }

@@ -9,7 +9,7 @@ import UIKit
 
 class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditCourseDelegate, AddCourseDelegate {
     func didAddCourse() {
-        let fetch = datamanagerInstance.fetchCourse(departmentName: selectedDepartment!)
+        let fetch = datamanagerInstance.fetchCoursesFromDepartment(departmentName: selectedDepartment!)
         self.courses = fetch
         self.courseTable.reloadData()
     }
@@ -35,7 +35,7 @@ class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         // Fetch courses for the selected department
-        let fetch = datamanagerInstance.fetchCourse(departmentName: selectedDepartment!)
+        let fetch = datamanagerInstance.fetchCoursesFromDepartment(departmentName: selectedDepartment!)
         self.courses = fetch
         
         courseTable.delegate = self
@@ -73,7 +73,7 @@ class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewData
             datamanagerInstance.deleteEntity(courseToDelete)
 
             // After deleting, update the course array and reload the table view
-            let fetch = datamanagerInstance.fetchCourse(departmentName: selectedDepartment!)
+            let fetch = datamanagerInstance.fetchCoursesFromDepartment(departmentName: selectedDepartment!)
             self.courses = fetch
             self.courseTable.reloadData()
         }

@@ -30,17 +30,9 @@ class EditDepartmentVC: UIViewController {
             if currentIdentifier == "EditDepartmentVC" {
                 if isEditingEnabled {
                     // If editing is enabled, show "Save" button
-                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-                        title: "Save", style: .plain, target: self, action: #selector(saveButton))
-                }else {
-                    // If editing is not enabled, show "Edit" button
-                    let editButton = UIBarButtonItem(
-                        title: "Edit", style: .plain, target: self, action: #selector(editButton))
-                    let departmentButton = UIBarButtonItem(
-                        title: "Professor(s)", style: .plain, target: self, action: #selector(professor))
-                    let courseButton = UIBarButtonItem(
-                        title: "Course(s)", style: .plain, target: self, action: #selector(course))
-                    self.navigationItem.rightBarButtonItems = [editButton, departmentButton, courseButton]
+                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButton))
+                } else {
+                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(ellipsisButton))
                 }
             }
         }
@@ -52,6 +44,33 @@ class EditDepartmentVC: UIViewController {
         if let department = department {
             editDepartmentName.text = department.departmentName
         }
+    }
+    
+    @objc func ellipsisButton(sender: UIBarButtonItem) {
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let editAction = UIAlertAction(title: "Edit", style: .default, handler: { _ in
+            self.editButton()
+        })
+        let professorAction = UIAlertAction(title: "Professor(s)", style: .default, handler: { _ in
+            self.professor()
+        })
+        let courseAction = UIAlertAction(title: "Course(s)", style: .default, handler: { _ in
+            self.course()
+        })
+        optionMenu.addAction(editAction)
+        optionMenu.addAction(professorAction)
+        optionMenu.addAction(courseAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        optionMenu.addAction(cancelAction)
+
+        if let popoverController = optionMenu.popoverPresentationController {
+            popoverController.barButtonItem = sender
+            popoverController.permittedArrowDirections = .right
+            popoverController.sourceView = self.view
+        }
+        present(optionMenu, animated: true, completion: nil)
     }
     
     @objc func editButton() {

@@ -9,7 +9,7 @@ import UIKit
 
 class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditProfessorDelegate, AddProfessorDelegate {
     func didAddProfessor() {
-        let fetch = datamanagerInstance.fetchProfessor(departmentName: selectedDepartment!)
+        let fetch = datamanagerInstance.fetchProfessorsFromDepartment(departmentName: selectedDepartment!)
         self.professors = fetch
         self.professorTable.reloadData()
     }
@@ -35,7 +35,7 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         // Fetch professors for the selected department
-        let fetch = datamanagerInstance.fetchProfessor(departmentName: selectedDepartment!)
+        let fetch = datamanagerInstance.fetchProfessorsFromDepartment(departmentName: selectedDepartment!)
         self.professors = fetch
         
         professorTable.delegate = self
@@ -73,9 +73,9 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
             datamanagerInstance.deleteEntity(professorToDelete)
 
             // After deleting, update the Professor array and reload the table view
-            let fetch = datamanagerInstance.fetchProfessor(departmentName: selectedDepartment!)
+            let fetch = datamanagerInstance.fetchProfessorsFromDepartment(departmentName: selectedDepartment!)
             self.professors = fetch
-            self.professorTable.reloadData()
+            professorTable.reloadData()
         }
     }
     
