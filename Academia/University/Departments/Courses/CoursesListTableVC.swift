@@ -93,6 +93,7 @@ class CoursesListTableVC: UIViewController, UITableViewDelegate, UITableViewData
                 if let destinationVC = segue.destination as? EditCourseVC {
                     destinationVC.course = selectedCourse
                     destinationVC.selectedCourseName = selectedCourse.courseName!
+                    destinationVC.selectedDepartment = self.selectedDepartment
                     destinationVC.delegate = self
                 }
             }

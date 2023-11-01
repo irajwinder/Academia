@@ -19,6 +19,7 @@ extension Course {
     @NSManaged public var courseCode: Int64
     @NSManaged public var courseName: String?
     @NSManaged public var semester: String?
+    @NSManaged public var courseAdvisor: String?
     @NSManaged public var department: Department?
     @NSManaged public var professor: Professor?
     @NSManaged public var student: NSSet?

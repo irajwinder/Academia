@@ -219,19 +219,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qAH-eA-XmI">
-                                <rect key="frame" x="20" y="103" width="390" height="595"/>
+                                <rect key="frame" x="20" y="103" width="390" height="695"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="lHZ-mo-0Vx">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="185"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="123"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FY-vD-e1q">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="92.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="61.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Course Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6nw-b1-0fI">
-                                                <rect key="frame" x="0.0" y="92.666666666666657" width="390" height="92.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="61.666666666666657" width="390" height="61.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -239,35 +239,59 @@
                                         <color key="tintColor" name="AccentColor"/>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="USP-bt-mTN">
-                                        <rect key="frame" x="0.0" y="205" width="390" height="185"/>
+                                        <rect key="frame" x="0.0" y="143" width="390" height="123"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbh-v6-2xH">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="92.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="61.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Course Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gMN-3C-dzZ">
-                                                <rect key="frame" x="0.0" y="92.666666666666686" width="390" height="92.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="61.666666666666686" width="390" height="61.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="BAu-64-7X1">
-                                        <rect key="frame" x="0.0" y="410" width="390" height="185"/>
+                                        <rect key="frame" x="0.0" y="286" width="390" height="123"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Semester " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynN-i8-Z4D">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="92.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="61.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Semester Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CSd-iJ-b8y">
-                                                <rect key="frame" x="0.0" y="92.666666666666629" width="390" height="92.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="61.666666666666686" width="390" height="61.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="PuM-hK-9yb">
+                                        <rect key="frame" x="0.0" y="429" width="390" height="123"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Advisor " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2v-dL-rfF">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="61.666666666666664"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Course Advisor " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aok-8E-KLI">
+                                                <rect key="frame" x="0.0" y="61.666666666666629" width="390" height="61.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="aMt-t6-cnD">
+                                        <rect key="frame" x="0.0" y="572" width="390" height="123"/>
+                                        <subviews>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rrM-Go-x11">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="123"/>
+                                            </pickerView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -280,11 +304,13 @@
                             <constraint firstItem="qAH-eA-XmI" firstAttribute="top" secondItem="cUR-dP-TIp" secondAttribute="top" id="NFY-0E-iJc"/>
                             <constraint firstItem="qAH-eA-XmI" firstAttribute="leading" secondItem="cUR-dP-TIp" secondAttribute="leading" constant="20" id="ZbP-di-MSF"/>
                             <constraint firstItem="cUR-dP-TIp" firstAttribute="trailing" secondItem="qAH-eA-XmI" secondAttribute="trailing" constant="20" id="sMs-GA-75h"/>
-                            <constraint firstItem="cUR-dP-TIp" firstAttribute="bottom" secondItem="qAH-eA-XmI" secondAttribute="bottom" priority="750" constant="200" id="sqk-7Z-XLH"/>
+                            <constraint firstItem="cUR-dP-TIp" firstAttribute="bottom" secondItem="qAH-eA-XmI" secondAttribute="bottom" priority="750" constant="100" id="sqk-7Z-XLH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MC7-Vi-pdO"/>
                     <connections>
+                        <outlet property="courseAdvisor" destination="Aok-8E-KLI" id="QZv-qi-3zg"/>
+                        <outlet property="courseAdvisorPicker" destination="rrM-Go-x11" id="5uV-RK-nbJ"/>
                         <outlet property="courseCode" destination="gMN-3C-dzZ" id="pkK-hm-FOm"/>
                         <outlet property="courseName" destination="6nw-b1-0fI" id="vP9-yA-DW1"/>
                         <outlet property="courseSemester" destination="CSd-iJ-b8y" id="RHg-Tu-Nmu"/>
@@ -423,14 +449,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UniversityCell" id="i7G-e4-bdh" customClass="UniversityListTableCell" customModule="Academia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="430" height="41.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="430" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i7G-e4-bdh" id="w3a-SB-yTi">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="41.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CaR-qz-0g6">
-                                                    <rect key="frame" x="10" y="10.000000000000002" width="410" height="21.666666666666671"/>
+                                                    <rect key="frame" x="10" y="10" width="410" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -502,14 +528,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DepartmentCell" id="9aD-JM-HD9" customClass="DepartmentsListTableCell" customModule="Academia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="430" height="41.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="430" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9aD-JM-HD9" id="Ls1-ey-M9j">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="41.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rk2-tx-ngv">
-                                                    <rect key="frame" x="10" y="10.000000000000002" width="410" height="21.666666666666671"/>
+                                                    <rect key="frame" x="10" y="10" width="410" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -562,14 +588,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfessorCell" id="ky9-mm-UFp" customClass="ProfessorsListTableCell" customModule="Academia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="430" height="41.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="50" width="430" height="40.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ky9-mm-UFp" id="uRx-w9-ib9">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="41.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="40.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0L-Nu-tw0">
-                                                    <rect key="frame" x="10" y="9.9999999999999982" width="410" height="21.333333333333329"/>
+                                                    <rect key="frame" x="10" y="10.000000000000002" width="410" height="20.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -622,14 +648,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CourseCell" id="sog-jj-WxT" customClass="CoursesListTableCell" customModule="Academia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="430" height="40.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="430" height="41.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sog-jj-WxT" id="lf3-5j-1Vy">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="40.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="41.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLH-gc-jz2">
-                                                    <rect key="frame" x="10" y="10.000000000000002" width="410" height="20.666666666666671"/>
+                                                    <rect key="frame" x="10" y="9.9999999999999982" width="410" height="21.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -682,14 +708,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentCell" id="7Re-Dx-dsO" customClass="StudentsListTableCell" customModule="Academia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="430" height="40.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="430" height="41.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Re-Dx-dsO" id="avn-Bx-7hr">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="40.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="41.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zE2-OT-JqG">
-                                                    <rect key="frame" x="10" y="10.000000000000002" width="410" height="20.666666666666671"/>
+                                                    <rect key="frame" x="10" y="9.9999999999999982" width="410" height="21.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -942,19 +968,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ffb-zB-wWW">
-                                <rect key="frame" x="20" y="103" width="390" height="595"/>
+                                <rect key="frame" x="20" y="103" width="390" height="695"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Hpw-of-PUn">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="185"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="123"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naM-3R-Jc1">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="92.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="61.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Course Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FbZ-QJ-oed">
-                                                <rect key="frame" x="0.0" y="92.666666666666657" width="390" height="92.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="61.666666666666657" width="390" height="61.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -962,35 +988,59 @@
                                         <color key="tintColor" name="AccentColor"/>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6GQ-dD-7TG">
-                                        <rect key="frame" x="0.0" y="205" width="390" height="185"/>
+                                        <rect key="frame" x="0.0" y="143" width="390" height="123"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJ0-db-ohj">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="92.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="61.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Course Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tff-RF-Lub">
-                                                <rect key="frame" x="0.0" y="92.666666666666686" width="390" height="92.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="61.666666666666686" width="390" height="61.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gwN-vF-c1Q">
-                                        <rect key="frame" x="0.0" y="410" width="390" height="185"/>
+                                        <rect key="frame" x="0.0" y="286" width="390" height="123"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Semester " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7c4-il-Mq8">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="92.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="61.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Semester Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="csb-UW-RXH">
-                                                <rect key="frame" x="0.0" y="92.666666666666629" width="390" height="92.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="61.666666666666686" width="390" height="61.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ydx-oY-Kwc">
+                                        <rect key="frame" x="0.0" y="429" width="390" height="123"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Advisor " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9O-oU-o8s">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="61.666666666666664"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Course Advisor " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="idz-xQ-azq">
+                                                <rect key="frame" x="0.0" y="61.666666666666629" width="390" height="61.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yTq-l5-TB0">
+                                        <rect key="frame" x="0.0" y="572" width="390" height="123"/>
+                                        <subviews>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FZQ-yH-kIU">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="123"/>
+                                            </pickerView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -1003,11 +1053,13 @@
                             <constraint firstItem="ffb-zB-wWW" firstAttribute="top" secondItem="YjP-O9-yoK" secondAttribute="top" id="0JP-F3-6LB"/>
                             <constraint firstItem="ffb-zB-wWW" firstAttribute="leading" secondItem="YjP-O9-yoK" secondAttribute="leading" constant="20" id="Npe-a9-aec"/>
                             <constraint firstItem="YjP-O9-yoK" firstAttribute="trailing" secondItem="ffb-zB-wWW" secondAttribute="trailing" constant="20" id="pW7-d5-ja9"/>
-                            <constraint firstItem="YjP-O9-yoK" firstAttribute="bottom" secondItem="ffb-zB-wWW" secondAttribute="bottom" priority="750" constant="200" id="uyB-4Z-ECR"/>
+                            <constraint firstItem="YjP-O9-yoK" firstAttribute="bottom" secondItem="ffb-zB-wWW" secondAttribute="bottom" priority="750" constant="100" id="uyB-4Z-ECR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ztb-sK-zad"/>
                     <connections>
+                        <outlet property="editCourseAdvisor" destination="idz-xQ-azq" id="u2N-f5-wJI"/>
+                        <outlet property="editCourseAdvisorPicker" destination="FZQ-yH-kIU" id="gTm-a4-aM9"/>
                         <outlet property="editCourseCode" destination="Tff-RF-Lub" id="xkw-XA-keh"/>
                         <outlet property="editCourseName" destination="FbZ-QJ-oed" id="lo3-1X-7qe"/>
                         <outlet property="editCourseSemester" destination="csb-UW-RXH" id="2c1-TC-ohv"/>

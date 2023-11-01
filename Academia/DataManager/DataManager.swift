@@ -126,7 +126,7 @@ class DataManager: NSObject {
     }
     
     // Save Course data to CoreData
-    func saveCourse(departmentName: String, courseName: String, courseCode: String, courseSemester: String) {
+    func saveCourse(departmentName: String, courseName: String, courseCode: String, courseSemester: String, courseAdvisor: String) {
         // Obtains a reference to the AppDelegate
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -141,6 +141,7 @@ class DataManager: NSObject {
         newCourse.courseName = courseName
         newCourse.courseCode = Int64(courseCode) ?? 0
         newCourse.semester = courseSemester
+        newCourse.courseAdvisor = courseAdvisor
         
         // Fetch the Department entity based on the given Department name
         let fetchRequest = Department.fetchRequest()
@@ -278,7 +279,7 @@ class DataManager: NSObject {
     }
     
     //Update Professor Data
-    func updateCourse(course: Course, editCourseName: String, editCourseCode: String, editCourseSemester: String) {
+    func updateCourse(course: Course, editCourseName: String, editCourseCode: String, editCourseSemester: String, editCourseAdvisor: String) {
         // Obtains a reference to the AppDelegate
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -290,6 +291,7 @@ class DataManager: NSObject {
         course.courseName = editCourseName
         course.courseCode = Int64(editCourseCode) ?? 0
         course.semester = editCourseSemester
+        course.courseAdvisor = editCourseAdvisor
 
         do {
             // Attempting to save the changes made to the managed context
