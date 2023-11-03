@@ -42,7 +42,7 @@ class DepartmentsVC: UIViewController {
         }
         
         //Save the data
-        guard let selectedUniversity = selectedUniversity?.universityName else {
+        guard let selectedUniversity = selectedUniversity else {
             print("Error: Could not fetch!")
             return
         }

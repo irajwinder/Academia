@@ -48,7 +48,7 @@ class DataManager: NSObject {
     }
     
     // Save Department data to CoreData
-    func saveDepartment(universityName: String, departmentName: String, entity: String) {
+    func saveDepartment(universityName: University, departmentName: String, entity: String) {
         // Obtains a reference to the AppDelegate
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -61,20 +61,8 @@ class DataManager: NSObject {
         
         // Creating a new instance of NSManagedObject
         let newDepartment = NSManagedObject(entity: entityDescription!, insertInto: managedContext)
+        newDepartment.setValue(universityName, forKey: "university")
         newDepartment.setValue(departmentName, forKey: "departmentName")
-        
-        // Fetch the University entity based on the given university name
-        let fetchRequest = University.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "universityName == %@", universityName)
-        do {
-            let results = try managedContext.fetch(fetchRequest)
-            if let university = results.first {
-                // Establish the relationship between the department and university
-                newDepartment.setValue(university, forKey: "university")
-            }
-        } catch let error as NSError {
-            print("Error fetching university: \(error), \(error.userInfo)")
-        }
         
         do {
             // Attempting to save the changes made to the managed context
@@ -87,7 +75,7 @@ class DataManager: NSObject {
     }
     
     // Save Professor data to CoreData
-    func saveProfessor(departmentName: String, professorName: String, phoneNumber: String) {
+    func saveProfessor(departmentName: Department, professorName: String, phoneNumber: String) {
         // Obtains a reference to the AppDelegate
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -99,21 +87,9 @@ class DataManager: NSObject {
         let newProfessor = Professor(context: managedContext)
         
         // Set the values for various attributes of the Professor entity
+        newProfessor.setValue(departmentName, forKey: "department")
         newProfessor.professorName = professorName
         newProfessor.phoneNumber = Int64(phoneNumber) ?? 0
-        
-        // Fetch the Department entity based on the given Department name
-        let fetchRequest = Department.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "departmentName == %@", departmentName)
-        do {
-            let results = try managedContext.fetch(fetchRequest)
-            if let department = results.first {
-                // Establish the relationship between the professor and department
-                newProfessor.setValue(department, forKey: "department")
-            }
-        } catch let error as NSError {
-            print("Error fetching Department: \(error), \(error.userInfo)")
-        }
         
         do {
             // Attempting to save the changes made to the managed context
@@ -126,7 +102,7 @@ class DataManager: NSObject {
     }
     
     // Save Course data to CoreData
-    func saveCourse(departmentName: String, courseName: String, courseCode: String, courseSemester: String, courseAdvisor: String) {
+    func saveCourse(departmentName: Department, courseName: String, courseCode: String, courseSemester: String, courseAdvisor: String) {
         // Obtains a reference to the AppDelegate
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -138,23 +114,11 @@ class DataManager: NSObject {
         let newCourse = Course(context: managedContext)
         
         // Set the values for various attributes of the Course entity
+        newCourse.setValue(departmentName, forKey: "department")
         newCourse.courseName = courseName
         newCourse.courseCode = Int64(courseCode) ?? 0
         newCourse.semester = courseSemester
         newCourse.courseAdvisor = courseAdvisor
-        
-        // Fetch the Department entity based on the given Department name
-        let fetchRequest = Department.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "departmentName == %@", departmentName)
-        do {
-            let results = try managedContext.fetch(fetchRequest)
-            if let department = results.first {
-                // Establish the relationship between the course and department
-                newCourse.setValue(department, forKey: "department")
-            }
-        } catch let error as NSError {
-            print("Error fetching Course: \(error), \(error.userInfo)")
-        }
         
         do {
             // Attempting to save the changes made to the managed context
@@ -167,7 +131,7 @@ class DataManager: NSObject {
     }
     
     // Save Student data to CoreData
-    func saveStudent(courseName: String, studentID: String, studentName: String, studentMajor: String, studentGPA: String) {
+    func saveStudent(courseName: Course, studentID: String, studentName: String, studentMajor: String, studentGPA: String) {
         // Obtains a reference to the AppDelegate
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -179,25 +143,11 @@ class DataManager: NSObject {
         let newStudent = Student(context: managedContext)
         
         // Set the values for various attributes of the Student entity
+        newStudent.setValue(courseName, forKey: "course")
         newStudent.studentID = Int64(studentID) ?? 0
         newStudent.studentName = studentName
         newStudent.major = studentMajor
         newStudent.gpa = Double(studentGPA) ?? 0.0
-        
-        // Fetch the Course entity based on the given Course name
-        let fetchRequest = Course.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "courseName == %@", courseName)
-        print(fetchRequest)
-        do {
-            let results = try managedContext.fetch(fetchRequest)
-            if let course = results.first {
-                print(course)
-                // Establish the relationship between the student and course
-                newStudent.setValue(course, forKey: "course")
-            }
-        } catch let error as NSError {
-            print("Error fetching Department: \(error), \(error.userInfo)")
-        }
 
         do {
             // Attempting to save the changes made to the managed context
