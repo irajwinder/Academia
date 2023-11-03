@@ -35,7 +35,7 @@ class UniversityVC: UIViewController {
     
     //Save the university to Core Data
     @objc func saveUniversity() {
-        //Validate before saving
+        //Validate before saving        
         guard let universityName = self.universityName.text, Validation.isValidName(universityName) else {
             Validation.showAlert(on: self, with: "Invalid Name", message: "Please enter a valid name.")
             return

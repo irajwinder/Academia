@@ -38,7 +38,6 @@ class UniversityListTableVC: UIViewController, UITableViewDelegate, UITableViewD
         let fetch = datamanagerInstance.fetchUniversity()
         self.universities = fetch
         
-        
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         print(paths[0])
         
@@ -94,12 +93,10 @@ class UniversityListTableVC: UIViewController, UITableViewDelegate, UITableViewD
                 
                 // Pass the selected University to the destination view controller
                 if let destinationVC = segue.destination as? EditUniversityVC {
-                    destinationVC.university = selectedUniversity
-                    destinationVC.selectedUniversityName = selectedUniversity.universityName!
+                    destinationVC.selectedUniversityInstance = selectedUniversity
                     destinationVC.delegate = self
                 }
             }
         }
     }
-    
 }

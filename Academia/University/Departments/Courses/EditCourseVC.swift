@@ -19,12 +19,11 @@ class EditCourseVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
     @IBOutlet weak var editCourseAdvisor: UITextField!
     @IBOutlet weak var editCourseAdvisorPicker: UIPickerView!
     
-    var course: Course?
     var isEditingEnabled = false
     weak var delegate: EditCourseDelegate?
     
-    var selectedDepartment: String?
-    var selectedCourseName: String?
+    var selectedDepartment: Department?
+    var selectedCourse: Course?
     var professorNames: [Professor] = [] // hold the professor names
 
     override func viewDidLoad() {
@@ -51,7 +50,7 @@ class EditCourseVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
         editCourseAdvisorPicker.isHidden = true
         
         //Set the Course info
-        if let course = course {
+        if let course = selectedCourse {
             editCourseName.text = course.courseName
             editCourseCode.text = String(course.courseCode)
             editCourseSemester.text = course.semester
@@ -59,8 +58,9 @@ class EditCourseVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
         }
         
         // Fetch professors for the selected department
-        let fetch = datamanagerInstance.fetchProfessorsFromDepartment(departmentName: selectedDepartment!)
-        self.professorNames = fetch
+        if let fetch = selectedDepartment!.professor as? Set<Professor> {
+            self.professorNames = Array(fetch)
+        }
         
         // Set the data source and delegate for the UIPickerView.
         editCourseAdvisorPicker.dataSource = self
@@ -133,7 +133,7 @@ class EditCourseVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
         // Save changes and disable editing
         isEditingEnabled = false
                 
-        guard let course = course else {
+        guard let course = selectedCourse else {
             // Handle the case when the course object is nil
             print("Error: course object is nil.")
             return
@@ -154,7 +154,7 @@ class EditCourseVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelega
     @objc func student() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let studentsListTableVC = storyboard.instantiateViewController(withIdentifier: "StudentsListTableVC") as? StudentsListTableVC {
-            studentsListTableVC.selectedCourse = self.selectedCourseName
+            studentsListTableVC.selectedCourse = self.selectedCourse
             navigationController?.pushViewController(studentsListTableVC, animated: true)
         }
     }

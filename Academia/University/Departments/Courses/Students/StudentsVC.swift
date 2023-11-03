@@ -19,8 +19,7 @@ class StudentsVC: UIViewController {
     @IBOutlet weak var studentGPA: UITextField!
     
     weak var delegate: AddStudentDelegate?
-    
-    var selectedCourse: String?
+    var selectedCourse: Course?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +32,6 @@ class StudentsVC: UIViewController {
                     barButtonSystemItem: .save, target: self, action: #selector(saveStudent))
             }
         }
-        print(selectedCourse!)
     }
     
     //Save the Student to Core Data
@@ -60,8 +58,12 @@ class StudentsVC: UIViewController {
         }
         
         //Save the data
+        guard let selectedCourse = selectedCourse?.courseName else {
+            print("Error: Could not fetch!")
+            return
+        }
         datamanagerInstance.saveStudent(
-            courseName: selectedCourse!,
+            courseName: selectedCourse,
             studentID: studentID,
             studentName: studentName,
             studentMajor: studentMajor,

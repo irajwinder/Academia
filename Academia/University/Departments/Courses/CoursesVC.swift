@@ -21,7 +21,7 @@ class CoursesVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,
     
     weak var delegate: AddCourseDelegate?
     
-    var selectedDepartment: String?
+    var selectedDepartment: Department?
     var professorNames: [Professor] = [] // hold the professor names
     
     override func viewDidLoad() {
@@ -37,8 +37,9 @@ class CoursesVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,
         }
         
         // Fetch professors for the selected department
-        let fetch = datamanagerInstance.fetchProfessorsFromDepartment(departmentName: selectedDepartment!)
-        self.professorNames = fetch
+        if let fetch = selectedDepartment!.professor as? Set<Professor> {
+            self.professorNames = Array(fetch)
+        }
         
         // Set the data source and delegate for the UIPickerView.
         courseAdvisorPicker.dataSource = self
@@ -81,8 +82,12 @@ class CoursesVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,
         }
         
         //Save the data
+        guard let selectedDepartment = selectedDepartment?.departmentName else {
+            print("Error: Could not fetch!")
+            return
+        }
         datamanagerInstance.saveCourse(
-            departmentName: selectedDepartment!, 
+            departmentName: selectedDepartment,
             courseName: courseName,
             courseCode: courseCode,
             courseSemester: courseSemester, 

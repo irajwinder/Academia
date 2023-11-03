@@ -17,11 +17,9 @@ class EditUniversityVC: UIViewController {
     @IBOutlet weak var editUniversityNumber: UITextField!
     @IBOutlet weak var editUniversityAddress: UITextField!
     
-    var university: University?
     var isEditingEnabled = false
     weak var delegate: EditUniversityDelegate?
-    
-    var selectedUniversityName: String?
+    var selectedUniversityInstance: University? // Store the selected university
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +43,12 @@ class EditUniversityVC: UIViewController {
         editUniversityAddress.isEnabled = isEditingEnabled
         
         //Set the University info
-        if let university = university {
+        if let university = selectedUniversityInstance {
             editUniversityName.text = university.universityName
             editUniversityNumber.text = String(university.phoneNumber)
             editUniversityAddress.text = university.address
         }
+        
     }
     
     @objc func ellipsisButton(sender: UIBarButtonItem) {
@@ -102,7 +101,7 @@ class EditUniversityVC: UIViewController {
         // Save changes and disable editing
         isEditingEnabled = false
                 
-        guard let university = university else {
+        guard let university = selectedUniversityInstance else {
             // Handle the case when the university object is nil
             print("Error: university object is nil.")
             return
@@ -121,7 +120,7 @@ class EditUniversityVC: UIViewController {
     @objc func department() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let departmentsListTableVC = storyboard.instantiateViewController(withIdentifier: "DepartmentsListTableVC") as? DepartmentsListTableVC {
-            departmentsListTableVC.selectedUniversity = self.selectedUniversityName
+            departmentsListTableVC.selectedUniversityInstance = self.selectedUniversityInstance
             navigationController?.pushViewController(departmentsListTableVC, animated: true)
         }
     }

@@ -9,8 +9,9 @@ import UIKit
 
 class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditDepartmentDelegate, AddDepartmentDelegate {
     func didAddDepartment() {
-        let fetch = datamanagerInstance.fetchDepartmentsFromUniversity(universityName: selectedUniversity!)
-        self.departments = fetch
+        if let fetch = selectedUniversityInstance!.department as? Set<Department> {
+            self.departments = Array(fetch)
+        }
         self.departmentTable.reloadData()
     }
     
@@ -23,7 +24,7 @@ class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var departmentTable: UITableView!
     
     var departments : [Department] = [] // Store the fetched departments
-    var selectedUniversity: String? // Store the selected university
+    var selectedUniversityInstance: University? // Store the selected university
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +38,9 @@ class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableView
             }
         }
         // Fetch departments for the selected university
-        let fetch = datamanagerInstance.fetchDepartmentsFromUniversity(universityName: selectedUniversity!)
-        self.departments = fetch
+        if let fetch = selectedUniversityInstance!.department as? Set<Department> {
+            self.departments = Array(fetch)
+        }
         
         departmentTable.delegate = self
         departmentTable.dataSource = self
@@ -49,7 +51,7 @@ class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableView
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let departmentsVC = storyboard.instantiateViewController(withIdentifier: "DepartmentsVC") as? DepartmentsVC {
             departmentsVC.delegate = self
-            departmentsVC.selectedUniversity = self.selectedUniversity!
+            departmentsVC.selectedUniversity = self.selectedUniversityInstance!
             navigationController?.pushViewController(departmentsVC, animated: true)
         }
     }
@@ -75,8 +77,9 @@ class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableView
             datamanagerInstance.deleteEntity(departmentToDelete)
 
             // After deleting, updates the Department array and reload the table view
-            let fetch = datamanagerInstance.fetchDepartmentsFromUniversity(universityName: selectedUniversity!)
-            self.departments = fetch
+            if let fetch = selectedUniversityInstance!.department as? Set<Department> {
+                self.departments = Array(fetch)
+            }
             self.departmentTable.reloadData()
         }
     }
@@ -93,8 +96,7 @@ class DepartmentsListTableVC: UIViewController, UITableViewDelegate, UITableView
                 
                 // Pass the selected Department to the destination view controller
                 if let destinationVC = segue.destination as? EditDepartmentVC {
-                    destinationVC.department = selectedDepartment
-                    destinationVC.selectedDepartmentName = selectedDepartment.departmentName!
+                    destinationVC.selectedDepartment = selectedDepartment
                     destinationVC.delegate = self
                 }
             }

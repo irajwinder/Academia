@@ -15,11 +15,9 @@ class EditDepartmentVC: UIViewController {
     
     @IBOutlet weak var editDepartmentName: UITextField!
     
-    var department: Department?
+    var selectedDepartment: Department?
     var isEditingEnabled = false
     weak var delegate: EditDepartmentDelegate?
-    
-    var selectedDepartmentName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +39,7 @@ class EditDepartmentVC: UIViewController {
         editDepartmentName.isEnabled = isEditingEnabled
         
         //Set the Department info
-        if let department = department {
+        if let department = selectedDepartment {
             editDepartmentName.text = department.departmentName
         }
     }
@@ -90,7 +88,7 @@ class EditDepartmentVC: UIViewController {
         // Save changes and disable editing
         isEditingEnabled = false
                 
-        guard let department = department else {
+        guard let department = selectedDepartment else {
             // Handle the case when the department object is nil
             print("Error: department object is nil.")
             return
@@ -107,7 +105,7 @@ class EditDepartmentVC: UIViewController {
     @objc func professor() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let departmentsListTableVC = storyboard.instantiateViewController(withIdentifier: "ProfessorsListTableVC") as? ProfessorsListTableVC {
-            departmentsListTableVC.selectedDepartment = self.selectedDepartmentName
+            departmentsListTableVC.selectedDepartment = self.selectedDepartment
             navigationController?.pushViewController(departmentsListTableVC, animated: true)
         }
     }
@@ -115,7 +113,7 @@ class EditDepartmentVC: UIViewController {
     @objc func course() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let coursesListTableVC = storyboard.instantiateViewController(withIdentifier: "CoursesListTableVC") as? CoursesListTableVC {
-            coursesListTableVC.selectedDepartment = self.selectedDepartmentName
+            coursesListTableVC.selectedDepartment = self.selectedDepartment
             navigationController?.pushViewController(coursesListTableVC, animated: true)
         }
     }

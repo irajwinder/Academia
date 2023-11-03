@@ -347,64 +347,6 @@ class DataManager: NSObject {
         }
     }
     
-    // Fetch Department from Core Data
-    func fetchDepartmentsFromUniversity(universityName: String) -> [Department] {
-        // Fetches all the universities
-        let universities = fetchUniversity()
-        // Checks if there is a university with the given name
-        if let university = universities.first(where: { $0.universityName == universityName }),
-           // Checks if the university's departments are available
-           let departments = university.department as? Set<Department> {
-            return Array(departments) // Converts the set of departments to an array and returns it
-        } else {
-            return [] // Returns an empty array if the university or its departments are not found
-        }
-    }
-    
-    // Fetch Professor from Core Data
-    func fetchProfessorsFromDepartment(departmentName: String) -> [Professor] {
-        // Fetch all departments from the university
-        let allDepartments = fetchUniversity().flatMap { $0.department?.allObjects as? [Department] ?? [] }
-        // Check if the specified department exists in the fetched departments
-        if let department = allDepartments.first(where: { $0.departmentName == departmentName }),
-           // retrieve professors from the department
-           let professors = department.professor as? Set<Professor> {
-            return Array(professors) // Convert the set of professors to an array and return it
-        } else {
-            return []
-        }
-    }
-    
-    // Fetch Course from Core Data
-    func fetchCoursesFromDepartment(departmentName: String) -> [Course] {
-        // Fetch all departments from the university
-        let allDepartments = fetchUniversity().flatMap { $0.department?.allObjects as? [Department] ?? [] }
-        // Check if the specified department exists in the fetched departments
-        if let department = allDepartments.first(where: { $0.departmentName == departmentName }),
-           // retrieve courses from the department
-           let courses = department.course as? Set<Course> {
-            return Array(courses) // Convert the set of courses to an array and return it
-        } else {
-            return []
-        }
-    }
-    
-    // Fetch Students from Core Data
-    func fetchStudentsFromCourse(courseName: String) -> [Student] {
-        // Fetch all departments from the university
-        let allDepartments = fetchUniversity().flatMap { $0.department?.allObjects as? [Department] ?? [] }
-        
-        // Find the specific course by its name
-        if let course = allDepartments.flatMap({ $0.course?.allObjects as? [Course] ?? [] })
-            .first(where: { $0.courseName == courseName }),  // Filter the courses to find the one with the matching course name
-           let students = course.student as? Set<Student> {  // Extract students enrolled in the found course
-            return Array(students)  // Convert the set of students to an array and return it
-        } else {
-            return []  // Return an empty array if the course is not found or if there are no students in the course
-        }
-    }
-
-    
     //Delete function for deleting entities
     func deleteEntity(_ entity: NSManagedObject) {
         // Obtains a reference to the AppDelegate

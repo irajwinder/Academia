@@ -38,7 +38,7 @@ This project utilizes the following technologies:
 
 - Programming Language: Swift
 - Database: CoreData
-- Frameworks: SwiftUI
+- Frameworks: UIKIT
 
 ## Installation
 1. Clone the repository: `git clone https://github.com/irajwinder/Academia.git`

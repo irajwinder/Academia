@@ -9,8 +9,9 @@ import UIKit
 
 class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditStudentDelegate, AddStudentDelegate {
     func didAddStudent() {
-        let fetch = datamanagerInstance.fetchStudentsFromCourse(courseName: selectedCourse!)
-        self.students = fetch
+        if let fetch = selectedCourse!.student as? Set<Student> {
+            self.students = Array(fetch)
+        }
         self.studentTable.reloadData()
     }
     func didUpdateStudent() {
@@ -21,7 +22,7 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var studentTable: UITableView!
     
     var students : [Student] = [] // Store the fetched students
-    var selectedCourse: String?
+    var selectedCourse: Course?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +35,13 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
                     barButtonSystemItem: .add, target: self, action: #selector(addStudent))
             }
         }
-        
-        let fetch = datamanagerInstance.fetchStudentsFromCourse(courseName: selectedCourse!)
-        self.students = fetch
+        //Fetch Students from courses
+        if let fetch = selectedCourse!.student as? Set<Student> {
+            self.students = Array(fetch)
+        }
         
         studentTable.delegate = self
         studentTable.dataSource = self
-        print(selectedCourse!)
     }
     
     //add the Student
@@ -74,8 +75,9 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
             datamanagerInstance.deleteEntity(studentToDelete)
 
             // After deleting, update the student array and reload the table view
-            let fetch = datamanagerInstance.fetchStudentsFromCourse(courseName: selectedCourse!)
-            self.students = fetch
+            if let fetch = selectedCourse!.student as? Set<Student> {
+                self.students = Array(fetch)
+            }
             self.studentTable.reloadData()
         }
     }
@@ -92,8 +94,7 @@ class StudentsListTableVC: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 // Pass the selected student to the destination view controller
                 if let destinationVC = segue.destination as? EditStudentVC {
-                    destinationVC.student = selectedStudent
-                    destinationVC.selectedStudentName = selectedStudent.studentName!
+                    destinationVC.selectedStudent = selectedStudent
                     destinationVC.delegate = self
                 }
             }

@@ -18,11 +18,9 @@ class EditStudentVC: UIViewController {
     @IBOutlet weak var editStudentMajor: UITextField!
     @IBOutlet weak var editStudentGPA: UITextField!
     
-    var student: Student?
+    var selectedStudent: Student?
     var isEditingEnabled = false
     weak var delegate: EditStudentDelegate?
-    
-    var selectedStudentName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,13 +48,12 @@ class EditStudentVC: UIViewController {
         editStudentGPA.isEnabled = isEditingEnabled
         
         //Set the student info
-        if let student = student {
+        if let student = selectedStudent {
             editStudentID.text = String(student.studentID)
             editStudentName.text = student.studentName
             editStudentMajor.text = student.major
             editStudentGPA.text = String(student.gpa)
         }
-        print(selectedStudentName!)
     }
     
     @objc func editButton() {
@@ -90,7 +87,7 @@ class EditStudentVC: UIViewController {
         // Save changes and disable editing
         isEditingEnabled = false
                 
-        guard let student = student else {
+        guard let student = selectedStudent else {
             // Handle the case when the student object is nil
             print("Error: student object is nil.")
             return

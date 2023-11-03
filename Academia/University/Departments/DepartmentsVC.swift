@@ -17,7 +17,7 @@ class DepartmentsVC: UIViewController {
 
     weak var delegate: AddDepartmentDelegate?
     
-    var selectedUniversity: String?
+    var selectedUniversity: University?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +30,7 @@ class DepartmentsVC: UIViewController {
                     barButtonSystemItem: .save, target: self, action: #selector(saveDepartment))
             }
         }
+        
     }
     
     //Save the Department to Core Data
@@ -41,8 +42,12 @@ class DepartmentsVC: UIViewController {
         }
         
         //Save the data
+        guard let selectedUniversity = selectedUniversity?.universityName else {
+            print("Error: Could not fetch!")
+            return
+        }
         datamanagerInstance.saveDepartment(
-            universityName: selectedUniversity!, 
+            universityName: selectedUniversity,
             departmentName: departmentName,
             entity: "Department"
         )

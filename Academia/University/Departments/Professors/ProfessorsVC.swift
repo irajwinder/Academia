@@ -18,7 +18,7 @@ class ProfessorsVC: UIViewController {
     
     weak var delegate: AddProfessorDelegate?
     
-    var selectedDepartment: String?
+    var selectedDepartment: Department?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +47,12 @@ class ProfessorsVC: UIViewController {
         }
         
         //Save the data
+        guard let selectedDepartment = selectedDepartment?.departmentName else {
+            print("Error: Could not fetch!")
+            return
+        }
         datamanagerInstance.saveProfessor(
-            departmentName: selectedDepartment!, 
+            departmentName: selectedDepartment,
             professorName: professorName,
             phoneNumber: professorNumber
         )

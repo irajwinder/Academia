@@ -9,8 +9,9 @@ import UIKit
 
 class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EditProfessorDelegate, AddProfessorDelegate {
     func didAddProfessor() {
-        let fetch = datamanagerInstance.fetchProfessorsFromDepartment(departmentName: selectedDepartment!)
-        self.professors = fetch
+        if let fetch = selectedDepartment!.professor as? Set<Professor> {
+            self.professors = Array(fetch)
+        }
         self.professorTable.reloadData()
     }
     func didUpdateProfessor() {
@@ -21,7 +22,7 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var professorTable: UITableView!
     
     var professors : [Professor] = [] // Store the fetched professors
-    var selectedDepartment: String? // Store the selected department
+    var selectedDepartment: Department? // Store the selected department
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +36,9 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         // Fetch professors for the selected department
-        let fetch = datamanagerInstance.fetchProfessorsFromDepartment(departmentName: selectedDepartment!)
-        self.professors = fetch
+        if let fetch = selectedDepartment!.professor as? Set<Professor> {
+            self.professors = Array(fetch)
+        }
         
         professorTable.delegate = self
         professorTable.dataSource = self
@@ -73,8 +75,9 @@ class ProfessorsListTableVC: UIViewController, UITableViewDelegate, UITableViewD
             datamanagerInstance.deleteEntity(professorToDelete)
 
             // After deleting, update the Professor array and reload the table view
-            let fetch = datamanagerInstance.fetchProfessorsFromDepartment(departmentName: selectedDepartment!)
-            self.professors = fetch
+            if let fetch = selectedDepartment!.professor as? Set<Professor> {
+                self.professors = Array(fetch)
+            }
             professorTable.reloadData()
         }
     }
